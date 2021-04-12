@@ -12,10 +12,15 @@
     # Tiles will be a separate class that will hold information for the board to work.
       # Tile will have whether it is a bomb or not.
         # Does tile need to know about its adjacent tiles?
-  # Randomly put bombs in spots.
+  # Randomly put bombs in spots. (done)
     # Beginner has 10 mines and the board is 8x8, 9x9, 10x10
     # Intermediate has 40 mines and the board is between 13x15 and 16x16
     # Hard has 99 mines and the board is always 16x30 (30x16)
+  # When player makes a move, what do we want the board class to do?
+    # reveal the value of the position
+      # if not a bomb, then put r
+      # if bomb, then put B
+
 require_relative "tile"
 
 class Board
@@ -26,9 +31,15 @@ class Board
 
   def render
     puts "  #{(0..8).to_a.join(" ")}"
+    string = ""
     @grid.each_with_index do |row, i|
-      puts "#{i} #{row.join(" ")}"
+      row_string = "#{i} "
+      row.each do |col|
+        row_string += col.value + " " 
+      end
+      string += row_string + "\n"
     end
+    puts string
   end
 
   def create_bombs
@@ -47,5 +58,10 @@ class Board
   def [](x, y)
     @grid[x][y]
   end
-  
+
+  def check_position(position)
+    tile = self[position[0], position[1]]
+    tile.reveal
+  end
+
 end

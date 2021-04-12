@@ -1,7 +1,8 @@
 # Tile
 class Tile
-  attr_reader :is_bomb
+  attr_reader :value
   def initialize
+    @value = " "
     @is_bomb = false
   end
 
@@ -9,11 +10,11 @@ class Tile
     @is_bomb = true
   end
 
-  def to_s
+  def reveal
     if @is_bomb
-      "B"
+      @value = "b"
     else
-      " "
+      @value = "r"
     end
   end
 end
