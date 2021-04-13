@@ -18,15 +18,19 @@
     # Hard has 99 mines and the board is always 16x30 (30x16)
   # When player makes a move, what do we want the board class to do?
     # reveal the value of the position
-      # if not a bomb, then put r
-      # if bomb, then put B
+      # if not a bomb, then put r (done)
+      # if bomb, then put B (done)
+      # if an adjacent tile is blank and all adjacent's of it are blanks, then reveal it as "r"
+      # if an adjacent tile is blank and it has adjacent tiles that are bombs, then place a number with how many bombs are bordering it.
 
 require_relative "tile"
 
 class Board
   attr_reader :grid
   def initialize
-    @grid = Array.new(9) { Array.new(9) { Tile.new } }
+    @grid = Array.new(9) do |row|
+      Array.new(9) { |col| Tile.new(self, [row, col]) }
+    end
   end
 
   def render
@@ -70,7 +74,7 @@ class Board
 
   def position_is_flag?(pos)
     tile = self[pos[0], pos[1]]
-    if tile.value == "f"
+    if tile.value == "F"
       return true
     else
       return false
