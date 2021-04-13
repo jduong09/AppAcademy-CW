@@ -59,6 +59,10 @@ class Board
     @grid[x][y]
   end
 
+  def size
+    @grid.length
+  end
+
   def check_position(position)
     tile = self[position[0], position[1]]
     tile.reveal
