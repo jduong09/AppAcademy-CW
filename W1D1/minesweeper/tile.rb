@@ -87,12 +87,9 @@ class Tile
   end
 
   def reveal
-    # used to fully reveal the board at game end
     if @flagged
-      # mark true and false flags
       @bomb ? "F" : "f"
     elsif @bomb
-      # display a hit bomb as an X
       @explored ? "X" : "B"
     else
       adjacent_bomb_count == 0 ? "r" : adjacent_bomb_count.to_s
