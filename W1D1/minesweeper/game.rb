@@ -61,12 +61,18 @@ class Game
   end
 
   def play_game
-    @board.render
-    take_turn
+    until @board.won? || @board.lost?
+      @board.render
+      take_turn
+    end
+
+    if @board.won?
+      puts "You win!"
+    elsif @board.lost?
+      puts "Boom."
+      puts "You lose."
+      @board.render
+    end
   end
 
-  def run
-    play_game until game_over?
-    ending_message
-  end
 end

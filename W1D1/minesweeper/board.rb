@@ -39,7 +39,11 @@ class Board
     @grid.each_with_index do |row, i|
       row_string = "#{i} "
       row.each do |col|
-        row_string += col.value + " " 
+        if won? || lost?
+          row_string += col.reveal + " "
+        else
+          row_string += col.render + " " 
+        end
       end
       string += row_string + "\n"
     end
@@ -69,12 +73,12 @@ class Board
 
   def reveal_position(pos)
     tile = self[pos[0], pos[1]]
-    tile.reveal
+    tile.explore
   end
 
   def position_is_flag?(pos)
     tile = self[pos[0], pos[1]]
-    if tile.value == "F"
+    if tile.flagged
       return true
     else
       return false
@@ -84,6 +88,14 @@ class Board
   def flag_position(pos)
     tile = self[pos[0], pos[1]]
     tile.flag
+  end
+
+  def won?
+    @grid.flatten.all? { |tile| tile.bomb != tile.explored }
+  end
+
+  def lost?
+    @grid.flatten.any? { |tile| tile.bomb && tile.explored }
   end
 
 end

@@ -6,33 +6,35 @@ require_relative "board"
       # if an adjacent tile is blank and all adjacent's of it are blanks, then reveal it as "r"
       # if an adjacent tile is blank and it has adjacent tiles that are bombs, then place a number with how many bombs are bordering it.
 class Tile
-  attr_reader :value
+  attr_reader :flagged, :bomb, :explored
   def initialize(board, pos)
-    @value = "*"
     @board = board
     @pos = pos
+    @explored = false
+    @bomb = false
+    @flagged = false
   end
 
   def become_bomb
-    @value = "b"
+    @bomb = true
   end
 
   def flag
-    @value = "F"
+    @flagged = true
   end
 
-  def reveal
-    return self if @value == "f"
+  def explore
+    return self if @flagged
 
-    return self if @value == "r"
+    return self if @explored == true
 
-    @value = "r"
+    @explored = true
     
     return self if neighbors.empty?
 
-    if value != "b" && adjacent_bomb_count == 0
+    if !@bomb && adjacent_bomb_count == 0
       neighbors.each do |neighbor|
-        neighbor.reveal
+        neighbor.explore
         neighbor.render
       end
     end
@@ -44,7 +46,7 @@ class Tile
     count = 0
 
     neighbors.each do |neighbor|
-      if neighbor.value == "b"
+      if neighbor.bomb
         count += 1
       end
     end
@@ -75,10 +77,26 @@ class Tile
   end
 
   def render
-    if @value == "r" 
-      adjacent_bomb_count == 0 ? "r" : @value = adjacent_bomb_count.to_s
+    if @flagged
+      "F"
+    elsif @explored
+      adjacent_bomb_count == 0 ? "r" : adjacent_bomb_count.to_s
     else
-      @value
+      "*"
     end
   end
+
+  def reveal
+    # used to fully reveal the board at game end
+    if @flagged
+      # mark true and false flags
+      @bomb ? "F" : "f"
+    elsif @bomb
+      # display a hit bomb as an X
+      @explored ? "X" : "B"
+    else
+      adjacent_bomb_count == 0 ? "r" : adjacent_bomb_count.to_s
+    end
+  end
+
 end
