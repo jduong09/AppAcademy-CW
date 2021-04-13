@@ -17,4 +17,8 @@ class Tile
       @value = "r"
     end
   end
+
+  def flag
+    @value = "f"
+  end
 end

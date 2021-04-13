@@ -63,9 +63,23 @@ class Board
     @grid.length
   end
 
-  def check_position(position)
-    tile = self[position[0], position[1]]
+  def reveal_position(pos)
+    tile = self[pos[0], pos[1]]
     tile.reveal
+  end
+
+  def position_is_flag?(pos)
+    tile = self[pos[0], pos[1]]
+    if tile.value == "f"
+      return true
+    else
+      return false
+    end
+  end
+
+  def flag_position(pos)
+    tile = self[pos[0], pos[1]]
+    tile.flag
   end
 
 end
