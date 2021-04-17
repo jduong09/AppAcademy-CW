@@ -1,7 +1,7 @@
 # PHASE 2
-def convert_to_int(str)
-  Integer(str)
-end
+#def convert_to_int(str)
+  #Integer(str)
+#end
 
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
@@ -46,6 +46,9 @@ end
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
+    raise ArgumentError.new("we aren't friends if I don't know your name bud.") if name.length <= 0
+    raise ArgumentError.new("Friendships, like a fine wine, need at least five years to mature. sorry not sorry.") if yrs_known < 5
+    raise ArgumentError.new("I don't know your fav pastime, wtf this is so WRONG!") if fav_pastime.length <= 0
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
