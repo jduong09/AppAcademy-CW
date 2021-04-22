@@ -3,14 +3,9 @@ require_relative "piece"
 
 class Knight < Piece
   include Stepable
-  attr_reader :color
-
-  def initialize(color, board, pos)
-    super(color, board, pos)
-  end
 
   def symbol
-    :n
+    '♞'.colorize(color)
   end
 
   protected

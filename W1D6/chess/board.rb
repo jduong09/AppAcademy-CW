@@ -1,20 +1,38 @@
 require_relative "pieces"
 
 class Board
-  attr_reader :rows
-  def initialize
-    @sentinel = NullPiece.instance
-    @rows = Array.new(8) { Array.new(8) { @sentinel } }
+  attr_reader :rows, :sentinel
 
-    create_starting_grid
+  def initialize(fill_board = true)
+    @sentinel = NullPiece.instance
+    create_starting_grid(fill_board)
   end
 
-  def move_piece(start_pos, end_pos)
+  def move_piece(color, start_pos, end_pos)
     raise "There is no piece at #{start_pos}." if self[start_pos] == @sentinel
+
     piece = self[start_pos]
-    raise "This piece cannot travel to #{end_pos}." if !piece.valid_moves.include?(end_pos)
+
+    if piece.color != color
+      raise 'You must move your own piece'
+    elsif !piece.moves.include?(end_pos)
+      raise 'Piece does not move like that'
+    elsif !piece.valid_moves.include?(end_pos)
+      raise 'You cannot move into check'
+    end
+
+    move_piece!(start_pos, end_pos)
+  end
+
+  def move_piece!(start_pos, end_pos)
+    piece = self[start_pos]
+    raise 'piece cannot move like that' unless piece.moves.include?(end_pos)
+
     self[end_pos] = piece
+    self[start_pos] = @sentinel
     piece.pos = end_pos
+
+    nil
   end
 
   def add_piece(piece, pos)
@@ -36,13 +54,51 @@ class Board
   end
 
   def valid_pos?(pos)
-    return false if pos.any? { |num| num < 0 || num > 7 }
-    return true
+    pos.all? { |coord| coord.between?(0, 7) }
   end
 
-  def create_starting_grid
-    colors = [:white, :black]
+  def in_check?(color)
+    king = find_king(color)
+    opposing_color = color == :white ? :black : :white
 
+    opposing_moves = []
+    pieces.each do |piece|
+      next if piece.color != opposing_color
+      return true if piece.moves.include?(king.pos)
+    end
+    return false
+  end
+
+  def checkmate?(color)
+    return false unless in_check?(color)
+    
+    pieces.select { |p| p.color == color }.all? do |piece|
+      piece.valid_moves.empty?
+    end
+  end
+
+  def dup
+    new_board = Board.new(false)
+
+    pieces.each do |piece|
+      piece.class.new(piece.color, new_board, piece.pos)
+    end
+
+    new_board
+  end
+
+  def pieces
+    @rows.flatten.reject(&:empty?)
+  end
+
+  private
+
+  attr_reader :sentinel
+
+  def create_starting_grid(fill_board)
+    @rows = Array.new(8) { Array.new(8, @sentinel) }
+    colors = [:white, :black]
+    return unless fill_board
     colors.each do |color|
       place_back_row(color)
       place_pawn_row(color)
@@ -64,6 +120,11 @@ class Board
     (8).times do |num|
       Pawn.new(color, self, [row, num])
     end
+  end
+
+  def find_king(color)
+    king_pos = pieces.find { |p| p.color == color && p.is_a?(King) }
+    king_pos
   end
 
 end

@@ -3,17 +3,12 @@ require_relative "piece"
 
 class Bishop < Piece
   include Slideable
-  attr_reader :color
-
-  def initialize(color, board, pos)
-    super(color, board, pos)
-  end
 
   def symbol
-    :b
+    "♝".colorize(color)
   end
 
-  private
+  protected
 
   def move_dirs #moves diagonally in each diagonal direction
     diagonal_dirs

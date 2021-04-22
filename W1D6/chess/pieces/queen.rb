@@ -3,19 +3,14 @@ require_relative "piece"
 
 class Queen < Piece
   include Slideable
-  attr_reader :color
-  
-  def initialize(color, board, pos)
-    super(color, board, pos)
-  end
-
+ 
   def symbol
-    :q
+    '♛'.colorize(color)
   end
 
-  private
+  protected
 
   def move_dirs
-    horizontal_dirs.concat(diagonal_dirs)
+    horizontal_and_vertical_dirs + diagonal_dirs
   end
 end
