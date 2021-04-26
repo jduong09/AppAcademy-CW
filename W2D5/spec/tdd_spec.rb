@@ -63,6 +63,31 @@ describe TDD do
   #Outputs the most profitable pair of days on which to first buy the stock and then sell the stock. 
   #Remember, you can't sell stock before you buy it!
   describe "#stock_picker" do
-    it ""
+    it "takes an array of stock prices" do
+      expect { tdd.stock_picker("yo") }.to raise_error("That is not an array yo.")
+    end
+
+    it "returns the most profitable pair or days on which to buy/sell stock" do
+      expect(tdd.stock_picker([10, 5, 15, 14, 20])).to eq([1, 4])
+    end
+  end
+
+  #Only one disk may be moved at a time.
+  #Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or an empty rod.
+  #No disk may be placed on top of a disk that is smaller than it.
+  describe "#tower_of_hanoi" do
+    let(:toh_array) { [[1, 2, 3, 4, 5], [], []] }
+    let(:completed_toh) { [[], [], [1, 2, 3, 4, 5]] }
+    
+
+    describe "#won?" do
+      it "returns false when the game isn't over" do
+        expect(tdd.won?(toh_array)).to be(false)
+      end
+
+      it "returns true when the game is over" do
+        expect(tdd.won?(completed_toh)).to be(true)
+      end
+    end
   end
 end
