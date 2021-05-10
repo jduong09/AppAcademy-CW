@@ -16,13 +16,17 @@ class Node
   def remove
     # optional but useful, connects previous link to next link
     # and removes self from list.
-    @prev.next = @next
-    @next.prev = @prev
+    @prev.next = @next if @prev
+    @next.prev = @prev if @next
+    @next = nil
+    @prev = nil
+    self
   end
 end
 
 class LinkedList
   include Enumerable
+  
   attr_reader :head, :tail
 
   def initialize
@@ -38,19 +42,15 @@ class LinkedList
   end
 
   def first
-    @head.next
+    empty? ? nil : @head.next
   end
 
   def last
-    @tail.prev
+    empty? ? nil : @tail.prev
   end
 
   def empty?
-    if @head.next == @tail && @tail.prev == @head
-      return true
-    else
-      return false
-    end
+    self.head.next == self.tail
   end
 
   def get(key)
@@ -63,36 +63,36 @@ class LinkedList
   end
 
   def include?(key)
-    return true if get(key) != nil
-    return false
+    any? { |node| node.key == key }
   end
 
   def append(key, val)
     new_node = Node.new(key, val)
-    last_node = @tail.prev
-    last_node.next = new_node
-    @tail.prev = new_node
-    new_node.next = @tail
-    new_node.prev = last_node
-    nil
+
+    self.tail.prev.next = new_node
+    new_node.prev = self.tail.prev
+    new_node.next = self.tail
+    self.tail.prev = new_node
+
+    new_node
   end
 
   def update(key, val)
     each do |node|
       if node.key == key
         node.val = val
+        return node
       end
     end
-    nil
   end
 
   def remove(key)
     each do |node|
       if node.key == key
         node.remove
+        return node.val
       end
     end
-    nil
   end
 
   def each
@@ -104,7 +104,7 @@ class LinkedList
   end
 
   # uncomment when you have `each` working and `Enumerable` included
-  # def to_s
-  #   inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
-  # end
+  def to_s
+    inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
+  end
 end
