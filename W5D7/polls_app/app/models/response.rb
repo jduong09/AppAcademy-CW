@@ -1,6 +1,8 @@
 class Response < ApplicationRecord
   validate :not_duplicate_response, unless: -> { answer_choice.nil? }
 
+  validate :author_response, unless: -> { answer_choice.nil? }
+
   #answer choice
   belongs_to(
     :answer_choice,
@@ -33,9 +35,19 @@ class Response < ApplicationRecord
   end
 
   def respondent_already_answered?
-    sibling_responses.exists?(user_id: self.respondent_id)
+    sibling_responses.exists?(user_id: self.user_id)
   end
 
+  #author can't respond to own poll
+  def author_response
+    poll_author_id = self.answer_choice.question.poll.author_id
+
+    if poll_author_id == self.user_id
+      errors[:user_id] << 'author cannot vote'
+    end
+  end
+
+  #custom validation to check if the user has voted for a question.
   def not_duplicate_response
     if respondent_already_answered?
       errors[:user_id] << 'cannot vote twice for question'

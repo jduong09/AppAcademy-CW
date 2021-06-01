@@ -25,4 +25,47 @@ class Question < ApplicationRecord
     )
   end
 
+  # n_plus_1 query
+  def results
+    answer_choices = self.answer_choices
+    answers = {}
+
+    answer_choices.each do |answer_choice|
+      answers[answer_choice.choice] = answer_choice.responses.count
+    end
+
+    answers
+  end
+
+  # 2 query
+  def includes_results
+    answer_choices = self.answer_choices.includes(:responses)
+    answers = {}
+
+    answer_choices.each do |answer_choice|
+      answers[answer_choice.choice] = answer_choice.responses.length
+    end
+
+    answers
+  end
+
+  def responses_1_query
+    acs = AnswerChoice.find_by_sql([<<-SQL, id])
+      SELECT
+        answer_choices.*, COUNT(responses.id) AS num_responses
+      FROM
+        answer_choices
+      LEFT OUTER JOIN
+        responses ON answer_choices.id = responses.answer_choice_id
+      WHERE
+        answer_choices.question_id = ?
+      GROUP BY
+        answer_choices.id
+    SQL
+
+    acs.inject({}) do |results, ac|
+      results[ac.choice] = ac.num_responses; results
+    end
+  end
+
 end

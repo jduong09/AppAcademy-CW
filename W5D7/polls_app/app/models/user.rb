@@ -16,4 +16,9 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     primary_key: :id
   )
+
+  #return polls where the user has answered all the questions in the poll
+  def completed_polls
+  end
+
 end
