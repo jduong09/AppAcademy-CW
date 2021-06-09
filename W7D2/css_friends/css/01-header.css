@@ -2,6 +2,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  background-color: rgb(236, 234, 234);
 }
 
 .header {
@@ -40,29 +41,4 @@ body {
   border-right: 1px solid #ccc;
 }
 
-.header-notif {
-  border-left: 1px solid #ccc;
-  position: relative;
-}
 
-.notifs {
-  position: absolute;
-}
-
-.badge {
-  border-radius: 50%;
-  background: black;
-  padding: 1px 6px;
-  margin-left: 5px;
-}
-
-.badge:hover {
-  background-color: red;
-}
-
-
-.header-list > li:hover {
-  background-color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
