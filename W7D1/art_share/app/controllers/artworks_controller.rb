@@ -38,6 +38,42 @@ class ArtworksController < ApplicationController
     render json: artwork
   end
 
+  def like
+    like = Like.new(likeable_id: params[:id], user_id: params[:user_id], likeable_type: "Artwork")
+
+    if like.save
+      render json: like
+    else
+      render json: like.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
+  def unlike
+    like = Like.find_by(likeable_id: params[:id], user_id: params[:user_id], likeable_type: "Artwork")
+
+    if like.destroy
+      render json: like
+    else
+      render json: like.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
+  def favorite
+    artwork = Artwork.find_by(id: params[:id], artist_id: params[:user_id])
+
+    artwork.favorite = true
+    artwork.save
+    render json: artwork
+  end
+
+  def unfavorite
+    artwork = Artwork.find_by(id: params[:id], artist_id: params[:user_id])
+    
+    artwork.favorite = false
+    artwork.save
+    render json: artwork
+  end
+
   private
 
   def artwork_params
