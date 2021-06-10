@@ -1,4 +1,6 @@
 class ArtworkShare < ApplicationRecord
+  validates :favorite, inclusion: { in: [true, false] }
+
 
   belongs_to(
     :viewer,
