@@ -1,0 +1,25 @@
+<h2>New Note</h2>
+
+<form action="<%= notes_url %>" method="POST">
+  <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <select for="track_id" name="note[track_id]">
+    <% @tracks.each do |track| %>
+    <option id="track_id" value="<%= track.id %>"> <%= track.title %> </option>
+    <% end %>
+  </select>
+
+  <select for="user_id" name="note[user_id]">
+    <% @users.each do |user| %>
+    <option id="user_id" value="<%= user.id %>"> <%= user.email %> </option>
+    <% end %>
+  </select>
+
+  <label for="note_content">Content:</label>
+  <textarea id="note_content" name="note[content]" rows="4" columns="50"><%= @note.content %></textarea>
+
+  <input type="submit" value="Create Note">
+</form>

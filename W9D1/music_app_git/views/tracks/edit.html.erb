@@ -1,0 +1,25 @@
+<h2>Edit Track Page</h2>
+
+<form action="<%= track_url(@track) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH"
+
+  <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%= authenticity_token%>">
+
+  <label for="track_title">Title:</label>
+  <input id="track_title" name="track[title]" type="text">
+
+  <label for="track_order">Order:</label>
+  <input id="track_order" name="track[ord]" type="number">
+
+  <input type="radio" id="track_regular" name="track[regular]">
+  <label for="track_regular">Regular</label>
+
+  <input type="radio" id="track_bonus" name="track[bonus]">
+  <label for="track_bonus">Bonus</label>
+
+  <input type="submit" value="Save Edits">
+
+</form>

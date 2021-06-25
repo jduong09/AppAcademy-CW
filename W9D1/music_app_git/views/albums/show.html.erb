@@ -1,0 +1,46 @@
+<h2><%= @album.title %></h2>
+<h3>Details</h3>
+<ul>
+  <li>Year: <%= @album.year %></li>
+  <li>Number of Tracks: </li>
+  <% if @album.live %>
+    <li>Live Album</li>
+  <% else %>
+    <li>Studio Album</li>
+  <% end %>
+</ul>
+
+<h3>Tracklist</h3>
+<ul>
+  <% @tracks.each do |track| %>
+    <li><%= track.title %></li>
+  <% end %>
+</ul>
+
+<form action="<%= edit_album_url(@album) %>" method="GET">
+  <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%=form_authenticity_token%>">
+  
+  <input type="submit" value="Edit Album">
+</form>
+
+<form action="<%= album_url(@album) %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%=form_authenticity_token%>">
+
+  <input type="submit" value="Delete Album">
+</form>
+
+<form action="<%= new_album_track_url(@album) %>" method="GET">
+  <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input type="submit" value="Create Track">
+</form>

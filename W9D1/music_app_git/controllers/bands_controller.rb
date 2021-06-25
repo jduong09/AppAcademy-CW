@@ -24,7 +24,7 @@ class BandsController < ApplicationController
     @band = Band.new(band_params)
 
     if @band.save
-      render json: @band
+      redirect_to band_url(@band)
     else
       @band.errors.full_messages
     end

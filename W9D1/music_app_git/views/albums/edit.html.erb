@@ -1,0 +1,24 @@
+<h2>Edit Album</h2>
+
+<form action="<%= album_url %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  
+  <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label for="album_title">Title:</label>
+  <input id="album_title" name="album[title]" type="text">
+
+  <label for="album_year">Year:</label>
+  <input id="album_year" type="text" name="album[year]">
+
+  <input id="album_live" type="radio" name="album[live]">
+  <label for="album_live">Live</label>
+
+  <input id="album_studio" type="radio" name="album[studio]">
+  <label for="album_studio">Studio</label>
+
+  <input type="submit" value="Edit Album">
+</form>
