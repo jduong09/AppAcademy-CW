@@ -2,11 +2,12 @@ class BandsController < ApplicationController
   def index
     @bands = Band.all
 
-    render json: @bands
+    render :index
   end
 
   def show
     @band = Band.find_by(id: params[:id])
+    @albums = Album.where(band_id: params[:id])
     
     if @band
       render :show

@@ -9,29 +9,35 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
-    @track = Track.where(id: params[track][track_id])
+    @track = Track.find(params[:note][:track_id])
 
     @note.save
     redirect_to track_url(@track)
   end
 
   def edit
-    @note = Note.find_by(id: params[:id])
+    @note = Note.find(params[:note][:id])
+    @tracks = Track.where(id: @note.track_id)
+    @users = User.where(id: @note.user_id)
 
     render :edit
   end
 
   def update
     @note = Note.find_by(id: params[:id])
-
-    if @note.update
-      redirect_to notes_url(@note)
+    @track = Track.find(@note.track_id)
+    if @note.update(note_params)
+      redirect_to track_url(@track)
     else
       @note.errors.full_messages
     end
   end
 
   def destroy
+    @note = Note.find(params[:note][:id])
+    @track = Track.find_by(id: @note.track_id)
+    @note.destroy
+    redirect_to track_url(@track)
   end
 
   private

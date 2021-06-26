@@ -18,7 +18,7 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.find_by(id: params[:id])
-    @notes = Note.all.where('track_id = ?', @track.id)
+    @notes = Note.where('track_id = ?', @track.id)
 
     if @track
       render :show
@@ -39,8 +39,9 @@ class TracksController < ApplicationController
 
   def destroy
     @track = Track.find_by(id: params[:id])
+    @album = Album.find_by(id: @track.album_id)
     @track.destroy
-    @track
+    redirect_to album_url(@album)
   end
 
   def update

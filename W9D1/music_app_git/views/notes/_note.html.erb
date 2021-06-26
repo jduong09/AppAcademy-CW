@@ -2,6 +2,29 @@
 <% @notes.each do |note|  %>
   <li><%= note.content %><li>
   <li><%= note.user_id %><li>
+  <li>
+    <form action="<%= track_note_url(@track) %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input
+        type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+      <input type="hidden" name="note[id]" value="<%= note.id %>">
+
+      <input type="submit" value="Delete Note">
+    </form>
+  </li>
+  <li>
+  <form action="<%= edit_track_note_url(note.id) %>" method="GET">
+    <input 
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+    <input type="hidden" name="note[id]" value="<%= note.id %>">
+
+    <input type="submit" value="Edit Note">
+  </form>
+  </li>
 <% end %>
   <li>chicken-butt</li>
 </ul>

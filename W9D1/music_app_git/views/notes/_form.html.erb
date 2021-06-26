@@ -1,0 +1,30 @@
+<% action_url = note.persisted? ? note_url(@note) : notes_url %>
+<% submit_message = note.persisted? "Edit Note" : "Create Note" %>
+
+<form action="<%= action_url %>" method="POST">
+  <% if note.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <select for="track_id" name="note[track_id]">
+    <% @tracks.each do |track| %>
+    <option id="track_id" value="<%= track.id %>"> <%= track.title %> </option>
+    <% end %>
+  </select>
+
+  <select for="user_id" name="note[user_id]">
+    <% @users.each do |user| %>
+    <option id="user_id" value="<%= user.id %>"> <%= user.email %> </option>
+    <% end %>
+  </select>
+
+  <label for="note_content">Content:</label>
+  <textarea id="note_content" name="note[content]" rows="4" columns="50"><%= @note.content %></textarea>
+
+  <input type="submit" value="<%= submit_message %>">
+</form>

@@ -1,30 +1,3 @@
 <h2>New Track Page</h2>
 
-<form action="<%= tracks_url %>" method="POST">
-
-  <input 
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
-
-  <label for="track_title">Title:</label>
-  <input id="track_title" name="track[title]" type="text">
-
-  <label for="track_order">Order:</label>
-  <input id="track_order" name="track[ord]" type="number">
-
-  <select for="album_id" name="track[album_id]">
-    <% @albums.each do |album| %>
-    <option id="album_id" value="<%= album.id %>"> <%= album.title %> </option>
-    <% end %>
-  </select>
-
-  <input type="radio" id="track_regular" name="track[regular]" value="1">
-  <label for="track_regular">Regular</label>
-
-  <input type="radio" id="track_bonus" name="track[bonus]" value="1">
-  <label for="track_bonus">Bonus</label>
-
-  <input type="submit" value="Create Track">
-
-</form>
+<%= render "tracks/form", track: @track %>

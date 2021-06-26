@@ -2,16 +2,41 @@
 
 <p>Hello this is your show page loser</p>
 
+<form action="<%= bands_url %>" method="GET">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="submit" value="Back to Bands!">
+</form>
+
+<form action="<%= edit_band_url(@band) %>" method="GET">
+  <input
+    type="hidden" 
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input type="submit" value="Edit Band">
+</form>
+
 <form action="<%= band_url(@band) %>" method="POST">
-  <input type="hidden" name="_method" value="DELETE"
+  <input type="hidden" name="_method" value="DELETE">
 
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="submit" value="Delete Band">
 </form>
+
+<h3>Albums</h3>
+
+<ul>
+  <% @albums.each do |album| %>
+    <li><%= album.title %></li>
+  <% end %>
+
+</ul>
 
 <form action="<%= new_band_album_url(@band) %>" method="GET">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <input type="submit" value="Create New Album">
 </form>
+
 

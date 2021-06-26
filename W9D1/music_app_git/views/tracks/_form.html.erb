@@ -1,0 +1,27 @@
+<% action_url = track.persisted? ? track_url(track) : tracks_url %>
+<% submit_message = track.persisted? ? "Edit Track" : "Create Track" %>
+
+<form action="<%= action_url %>" method="POST">
+  <% if track.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token%>">
+
+  <label for="track_title">Title:</label>
+  <input id="track_title" name="track[title]" type="text">
+
+  <label for="track_order">Order:</label>
+  <input id="track_order" name="track[ord]" type="number">
+
+  <input type="radio" id="track_regular" name="track[regular]">
+  <label for="track_regular">Regular</label>
+
+  <input type="radio" id="track_bonus" name="track[bonus]">
+  <label for="track_bonus">Bonus</label>
+
+  <input type="submit" value="<%= submit_message %>">
+</form>
