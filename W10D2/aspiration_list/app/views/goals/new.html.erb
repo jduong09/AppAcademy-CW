@@ -1,0 +1,23 @@
+<h1>New Goal</h1>
+
+<form action="<%= goals_url %>" method="POST">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label for="goal_name">Name:</label>
+  <input id="goal_name" type="text" name="goal[name]">
+
+  <label for="goal_user_id">User:</label>
+  <select name="goal[user_id]" id="goal_user_id">
+    <% @users.each do |user| %>
+      <option value="<%= user.id %>"><%= user.username %></option>
+    <% end %>
+  </select>
+
+  <input type="radio" id="goal_private" name="goal[private]">
+  <label for="goal_private">Private</label>
+
+  <input type="submit" value="Submit New Goal">
+</form>
