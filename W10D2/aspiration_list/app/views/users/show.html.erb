@@ -1,1 +1,7 @@
-<h1>Hello <%= @user.username %></h1>
+<h1>Hello <%= @user.username %> </h1>
+
+<ul>
+<% @goals.each do |goal| %>
+  <li><%= goal.name %></li>
+<% end %>
+</ul>

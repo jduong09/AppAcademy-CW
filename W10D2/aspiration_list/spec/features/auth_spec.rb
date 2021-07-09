@@ -6,41 +6,35 @@ feature "the signup process" do
     expect(page).to have_content("New User Page!")
   end
 
-  feature "signing up a user" do 
-    before(:each) do 
-      visit new_user_url
-      fill_in "Username", :with => 'hello_world'
-      fill_in "Password", :with => 'password'
-      click_on 'create user'
-    end
-
-    scenario "it redirects to User's own page" do
-      expect(page).to have_content("Hello hello_world")
-    end
+  scenario "it redirects to User's own page" do
+    sign_up_as('hello_world')
+    expect(page).to have_content("Hello hello_world")
   end
 
   feature 'logging in' do
-    let(:user) { User.new(username: 'hello_world', password: 'password') }
-
-    before(:each) do
-      user.save
-      visit new_session_url
-      fill_in "Username", :with => 'hello_world'
-      fill_in "Password", :with => 'password'
-      click_on "sign in"
-    end
+    given(:hello_world) { FactoryBot.create(:user_hw) }
 
     scenario 'shows username on the homepage after login' do 
       #expect(page).to have_content("Logged In As: hello_world")
+      login_as(hello_world)
       expect(page).to have_content("Hello hello_world")
     end
   
   end
   
   feature 'logging out' do
-    scenario 'begins with a logged out state'
+    given(:hello_world) { FactoryBot.create(:user_hw) }
+    
+    scenario 'begins with a logged out state' do 
+      visit root_url
+      expect(page).to have_button("Sign In")
+    end
   
-    scenario 'doesn\'t show username on the homepage after logout'
-  
+    scenario 'doesn\'t show username on the homepage after logout' do
+      login_as(hello_world)
+      click_on("Log Out")
+
+      expect(page).not_to have_content("hello_world")
+    end
   end
 end
