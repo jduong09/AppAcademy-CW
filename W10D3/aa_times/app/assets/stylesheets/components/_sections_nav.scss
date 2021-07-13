@@ -1,0 +1,25 @@
+.section-nav {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+
+  li {
+    margin: 7px;
+  }
+
+  a:hover {
+    background-color: $light-gray;
+    text-decoration: none;
+  }
+
+  #all:hover {
+    background-color: white;
+    text-decoration: underline;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .section-nav {
+    display: none;
+  }
+}
