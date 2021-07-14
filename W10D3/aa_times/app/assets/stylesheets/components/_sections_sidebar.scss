@@ -23,6 +23,91 @@
   overflow: hidden;
   box-shadow: 4px 0 6px 1px rgba(0,0,0,0.1);
 
+  ul {
+    //each list will take up 100% of its width
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+
+    li {
+			margin: 0;
+			padding: 5px;
+			border-radius: 5px;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    li:hover:not(.subheader) {
+      background-color: $lightest-blue;
+    }
+
+    li.subheader {
+			font-size: smaller;
+			text-transform: uppercase;
+			color: $gray;
+			margin: 0 0 5px 0;
+    }
+  }
+
+  .dropdown {
+    position: relative;
+
+    ul {
+      display: none;
+      position: absolute;
+      top: -25px;
+      left: 170px;
+      border: 1px solid $light-gray;
+      z-index: 1;
+      background-color: white;
+      border-radius: 3px;
+      box-shadow: -1px 4px 6px rgba(0,0,0,0.09);
+    }
+    
+    // left arrow on sublist
+    ul:before {
+			display: block;
+			content: '';
+			border-right: 21px solid $light-gray;
+			border-top: 21px solid transparent;
+			border-bottom: 21px solid transparent;
+			position: absolute;
+			left: -22px;
+			top: 15px;
+		}
+
+    // left arrow on sublist
+		ul:after {
+			display: block;
+			content: '';
+			border-right: 21px solid white;
+			border-top: 21px solid transparent;
+			border-bottom: 21px solid transparent;
+			position: absolute;
+			left: -20px;
+			top: 15px;
+		}
+  }
+
+  // right arrow on headers in sidebar
+  .dropdown:after,
+  .dropdown:before {
+    content: "";
+    position: absolute;
+    top: 5;
+    right: 25%;
+    border-left: 5px solid gray;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    width: 0;
+    height: 0;
+  }
+
+  .dropdown:hover {
+		ul  {
+			display: block;
+		}
+	}
   
 }
 
