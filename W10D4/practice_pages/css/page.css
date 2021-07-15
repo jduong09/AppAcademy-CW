@@ -1,0 +1,125 @@
+header {
+  background: red;
+  border-bottom: 1px solid gray;
+  color: white;
+}
+
+nav {
+  width: 80%;
+  margin: auto;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+
+nav > .logo {
+  float: left;
+  text-transform: uppercase;
+  padding: 10px;
+  border-right: 1px solid gray;
+}
+
+.nav-titles {
+  float: right;
+}
+
+.nav-titles > li {
+  float: left;
+  border-left: 1px solid gray;
+  position: relative;
+}
+
+.nav-titles a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+}
+
+.nav-titles a:hover {
+  background: white;
+  color: black;
+  cursor: pointer;
+}
+
+li:hover .dropdown {
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  left: -1px;
+  color: black;
+  width: 175px;
+  background: white;
+  border: 1px solid gray;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.dropdown > li {
+  padding: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.dropdown > li:hover {
+  background: red;
+  color: white;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+}
+
+.sidebar {
+  float: left;
+  width: 20%;
+  border-right: 1px solid gray;
+  margin: 5px;
+}
+
+.content {
+  float:left;
+  width: 60%;
+  margin: 5px;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+footer {
+  width: 80%;
+  margin: auto;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  color: gray;
+}
+
+.copyright {
+  float: left;
+  padding: 10px;
+}
+
+.footer-list {
+  float: right;
+}
+
+.footer-list > li {
+  float: left;
+  padding: 10px;
+}
+
+.footer-list > li:hover {
+  cursor: pointer;
+  color: black;
+}
+
+
+
