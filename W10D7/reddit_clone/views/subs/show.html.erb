@@ -1,0 +1,27 @@
+<h1><%= @sub.title %></h1>
+
+<section>
+  <h2>Description</h2>
+  <p><%= @sub.description %></p>
+  <form action="<%= new_post_url %>" method="GET">
+    <input type="hidden" name="_method" value="<%= form_authenticity_token %>">
+
+    <input type="submit" value="Create New Post">
+  </form>
+
+  <span>Created by <%= @moderator.username %></span>
+  
+  <% if current_user == @moderator %>
+    <form action="<%= edit_sub_url %>" method="GET">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      
+      <input type="submit" value="Edit Sub">
+    </form>
+  <% end %>
+
+  <ul>
+  <% @sub.posts.each do |post| %>
+    <li><%= link_to "#{post.title}", post %></li>
+  <% end %>
+  </ul>
+</section>

@@ -1,0 +1,31 @@
+<h1>Edit Post</h1>
+
+<form action="<%= post_url(@post) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="post_title">Title:</label>
+  <input type="text" id="posts_title" name="post[title]">
+
+  <label for="post_url">Url(optional):</label>
+  <input type="text" id="posts_url" name="post[url]">
+
+  <label for"post_context">Context:</label>
+  <input type="text" id="post_context" name="post[context]">
+
+  <label for="post_author">Author:</label>
+  <select id="post_author" name="post[author_id]">
+  <% @authors.each do |author| %>
+    <option value="<%= author.id %>"><%= author.username %></option>
+  <% end %>
+  </select>
+
+  <label for="post_sub">Sub:</label>
+  <select id="post_sub" name="post[sub_id]">
+  <% @subs.each do |sub| %>
+    <option value="<%= sub.id %>"><%= sub.title %></option>
+  <% end %>
+  </select>
+
+  <input type="submit" value="Edit Post">
+</form>

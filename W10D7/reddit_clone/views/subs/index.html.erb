@@ -1,0 +1,19 @@
+<h1>Weddit's Subs</h1>
+
+<form action="<%= new_sub_url %>" method="GET">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="submit" value="Create New Sub">
+</form>
+
+<form action="<%= new_post_url %>" method="GET">
+  <input type="hidden" name="_method" value="<%= form_authenticity_token %>">
+
+  <input type="submit" value="Create New Post">
+</form>
+
+<ul>
+<% @subs.each do |sub| %>
+  <li><%= link_to "#{sub.title}", sub %></li>
+<% end %>
+</ul>

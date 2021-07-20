@@ -1,0 +1,22 @@
+<h1><%= @post.title %></h1>
+<h2>Created By: <%= @author.username %></h2>
+
+<section>
+  <span>Context: <%= @post.context %></span>
+  <span><%= @post.url %>
+</section>
+
+<% if current_user == @author %>
+  <form action="<%= edit_post_url %>" method="GET">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <input type="submit" value="Edit Post">
+  </form>
+
+  <form action="<%= post_url %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <input type="submit" value="Delete Post">
+  </form>
+<% end %>
