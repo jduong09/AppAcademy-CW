@@ -5,13 +5,13 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <label for="post_title">Title:</label>
-  <input type="text" id="posts_title" name="post[title]">
+  <input type="text" id="posts_title" name="post[title]" value="<%= @post.title %>">
 
   <label for="post_url">Url(optional):</label>
-  <input type="text" id="posts_url" name="post[url]">
+  <input type="text" id="posts_url" name="post[url]" value="<%= @post.url %>">
 
   <label for"post_context">Context:</label>
-  <input type="text" id="post_context" name="post[context]">
+  <input type="text" id="post_context" name="post[context]" value="<%= @post.context %>">
 
   <label for="post_author">Author:</label>
   <select id="post_author" name="post[author_id]">
@@ -20,12 +20,18 @@
   <% end %>
   </select>
 
-  <label for="post_sub">Sub:</label>
-  <select id="post_sub" name="post[sub_id]">
-  <% @subs.each do |sub| %>
-    <option value="<%= sub.id %>"><%= sub.title %></option>
+  <input type="hidden" name="post[sub_ids][]" value="">
+
+  <% Sub.all.each do |sub| %>
+    <label>
+      <%= sub.title %>
+      <input
+        type="checkbox"
+        value="<%= sub.id %>"
+        name="post[sub_ids][]"
+        <%= "checked" if @post.sub_ids.include?(sub.id) %>>
+    </label>
   <% end %>
-  </select>
 
   <input type="submit" value="Edit Post">
 </form>

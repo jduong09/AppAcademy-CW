@@ -4,6 +4,22 @@
 <section>
   <span>Context: <%= @post.context %></span>
   <span><%= @post.url %>
+  <span>Comments</span>
+
+  <ul>
+  <% comments_by_parent = @post.comments_by_parent_id %>
+  <% comments_by_parent[nil].each do |top_level_parent| %>
+    <li>
+      <%= render partial: "comments/comment", locals: { parent_comments: comments_by_parent, comment: top_level_parent } %>
+    </li>
+  <% end %>
+  </ul>
+
+  <form action="<%= new_post_comment_url(@post) %>" method="GET">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <input type="submit" value="Create Comment">
+  </form>
 </section>
 
 <% if current_user == @author %>

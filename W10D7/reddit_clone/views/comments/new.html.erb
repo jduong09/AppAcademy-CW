@@ -1,0 +1,19 @@
+<h1>New Comment</h1>
+
+<form action="<%= comments_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="comment[post_id]" value="<%= params[:post_id] %>">
+
+  <label for="comment_content">Content:</label>
+  <input id="comment_content" name="comment[content]" type="text">
+
+  <label for="comment_author">Author</label>
+  <select name="comment[author_id]">
+    <% User.all.each do |author| %>  
+      <option value="<%= author.id %>"><%= author.username %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Create Comment">
+</form>
