@@ -1,5 +1,7 @@
 class SubsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
+  layout "sub"
+  
   def index
     @subs = Sub.all
 

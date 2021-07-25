@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RedditClone</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'auth', media: 'all' %>
+  </head>
+
+  <body>
+    <%= render "shared/header" %>
+    <%= yield %>
+  </body>
+</html>

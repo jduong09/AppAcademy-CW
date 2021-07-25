@@ -1,0 +1,16 @@
+/* Application-Wide Selectors */
+body {
+  background-color: $brown;
+  font-size: 14px;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 66.66% 33.33%;
+  background-color: $light-gray;
+}

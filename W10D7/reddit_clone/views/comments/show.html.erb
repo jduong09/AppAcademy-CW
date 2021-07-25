@@ -1,14 +1,46 @@
-<h1><%= @comment.content %></h1>
+<main class="main-content">
+  <section>
+    <h2 class="sign-in-title"><%= @comment.content %></h2>
 
-<form action="<%= comments_url %>" method="POST">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <form action="<%= comments_url %>" method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="comment[author_id]" value="<%= current_user.id %>">
+      <input type="hidden" name="comment[post_id]" value="<%= Comment.find_by(id: params[:id]).post_id %>">
+      <input type="hidden" name="comment[parent_comment_id]" value="<%= params[:id] %>">
+    
+      <ul>
+        <li><label for="comment_content">Content:</label></li>
+        <li>
+          <textarea id="comment_content" rows="10" columns="10" name="comment[content]">Type Comment Here</textarea>
+        </li>
+        <li><input type="submit" value="Create Comment"></li>
+      </ul>
+    </form>
+  </section>
 
-  <input type="hidden" name="comment[author_id]" value="<%= current_user.id %>">
-  <input type="hidden" name="comment[post_id]" value="<%= Comment.find_by(id: params[:id]).post_id %>">
-  <input type="hidden" name="comment[parent_comment_id]" value="<%= params[:id] %>">
-  
-  <label for="comment_content">Content:</label>
-  <textarea id="comment_content" rows="4" columns="4" name="comment[content]">Type Comment Here</textarea>
-
-  <input type="submit" value="Create Comment">
-</form>
+  <section>
+    <aside class="class-1-3 first-box">
+     
+    </aside>
+    <footer>
+      <section class="footer-lists">
+        <ul class="col-1-2">
+          <li>Help</li>
+          <li>Reddit Coins</li>
+          <li>Reddit Premium</li>
+          <li>Reddit Gifts</li>
+        </ul>
+        <ul class="col-1-2">
+          <li>About</li>
+          <li>Careers</li>
+          <li>Press</li>
+          <li>Advertise</li>
+          <li>Blog</li>
+          <li>Terms</li>
+          <li>Content Policy</li>
+        </ul>
+      </section>
+      <span class="copyright">Reddit Inc © 2021 . All rights reserved<span>
+    </footer>
+  </section>
+</main>

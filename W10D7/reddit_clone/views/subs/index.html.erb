@@ -1,19 +1,29 @@
-<h1>Weddit's Subs</h1>
-
-<form action="<%= new_sub_url %>" method="GET">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-  <input type="submit" value="Create New Sub">
-</form>
-
-<form action="<%= new_post_url %>" method="GET">
-  <input type="hidden" name="_method" value="<%= form_authenticity_token %>">
-
-  <input type="submit" value="Create New Post">
-</form>
-
-<ul>
-<% @subs.each do |sub| %>
-  <li><%= link_to "#{sub.title}", sub %></li>
-<% end %>
-</ul>
+<main class="main-content">
+      <section class="index-section">
+        <form class="create" action="<%= new_sub_url %>" method="GET">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        
+          <input type="submit" value="Create New Sub">
+        </form>
+        
+        <form class="create" action="<%= new_post_url %>" method="GET">
+          <input type="hidden" name="_method" value="<%= form_authenticity_token %>">
+        
+          <input type="submit" value="Create New Post">
+        </form>
+        
+        <ul class="subscription-list">
+        <% @subs.each do |sub| %>
+          <li><h2><%= link_to "#{sub.title}", sub %></h2></li>
+          <li><%= sub.description %></li>
+        <% end %>
+        </ul>
+      </section>
+      <section class="col col-1-3">
+        <aside>
+          <h2>Yo This is the aside</h2>
+        </aside>
+        </footer>
+        </footer>
+      </section>
+    </main>

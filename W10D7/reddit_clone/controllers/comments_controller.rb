@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  layout "sub"
+  
   def new
     @comment = Comment.new
 

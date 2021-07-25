@@ -1,0 +1,42 @@
+<nav class="header-nav">
+  <ul class="nav-leftside">
+    <li><h1 class="logo">Reddit</h1></li>
+    <li>Home</li>
+  </ul>
+  <ul class="nav-rightside">
+    <li><input class="searchbox" type="text" value="Search Reddit"></li>
+  <% if !current_user.nil? %>
+    <li>Logged in as: <%= current_user.username %></li>
+    <li>
+      <form action="<%= session_url %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+        <input class="button" type="submit" value="Log Out">
+      </form>
+    </li>
+  <% else %>
+    <li>
+      <form action="<%= new_session_url %>" method="GET">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+        <input class="button" type="submit" value="Sign In">
+      </form>
+    </li>
+    <li>
+      <form action="<%= new_user_url %>" method="GET">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+        <input class="button" type="submit" value="Sign Up">
+      </form>
+    </li>
+  <% end %>
+    <li>
+      <form action="<%= root_url %>" method="GET">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+        <input class="button" type="submit" value="Home">
+      </form>
+    </li>
+  </ul>
+</nav>

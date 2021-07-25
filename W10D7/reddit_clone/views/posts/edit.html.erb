@@ -1,37 +1,78 @@
-<h1>Edit Post</h1>
+<main class="main-content">
+  <section class="new-form">
+    <h2 class="sign-in-title">Edit Post</h1>
 
-<form action="<%= post_url(@post) %>" method="POST">
-  <input type="hidden" name="_method" value="PATCH">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <form action="<%= post_url(@post) %>" method="POST">
+      <input type="hidden" name="_method" value="PATCH">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="post[sub_ids][]" value="">
 
-  <label for="post_title">Title:</label>
-  <input type="text" id="posts_title" name="post[title]" value="<%= @post.title %>">
+      <section>
+        <label for="post_title">Title:</label>
+        <input type="text" id="posts_title" name="post[title]" value="<%= @post.title %>">
+      </section>
 
-  <label for="post_url">Url(optional):</label>
-  <input type="text" id="posts_url" name="post[url]" value="<%= @post.url %>">
+      <section>
+        <label for="post_url">Url(optional):</label>
+        <input type="text" id="posts_url" name="post[url]" value="<%= @post.url %>">
+      </section>
 
-  <label for"post_context">Context:</label>
-  <input type="text" id="post_context" name="post[context]" value="<%= @post.context %>">
+      <section>
+        <label for"post_context">Context:</label>
+        <input type="text" id="post_context" name="post[context]" value="<%= @post.context %>">
+      </section>
 
-  <label for="post_author">Author:</label>
-  <select id="post_author" name="post[author_id]">
-  <% @authors.each do |author| %>
-    <option value="<%= author.id %>"><%= author.username %></option>
-  <% end %>
-  </select>
+      <section>
+        <label for="post_author">Author:</label>
+        <select id="post_author" name="post[author_id]">
+        <% @authors.each do |author| %>
+          <option value="<%= author.id %>"><%= author.username %></option>
+        <% end %>
+        </select>
+      </section>
 
-  <input type="hidden" name="post[sub_ids][]" value="">
+      <section>
+        <% Sub.all.each do |sub| %>
+          <label>
+            <%= sub.title %>
+            <input
+              type="checkbox"
+              value="<%= sub.id %>"
+              name="post[sub_ids][]"
+              <%= "checked" if @post.sub_ids.include?(sub.id) %>>
+          </label>
+        <% end %>
+      </section>
 
-  <% Sub.all.each do |sub| %>
-    <label>
-      <%= sub.title %>
-      <input
-        type="checkbox"
-        value="<%= sub.id %>"
-        name="post[sub_ids][]"
-        <%= "checked" if @post.sub_ids.include?(sub.id) %>>
-    </label>
-  <% end %>
+      <section class="sign-in-button">
+        <input type="submit" value="Edit Post">
+      </section>
+    </form>
+  </section>
 
-  <input type="submit" value="Edit Post">
-</form>
+  <section>
+    <aside class="class-1-3 first-box">
+
+    </aside>
+    <footer>
+      <section class="footer-lists">
+        <ul class="col-1-2">
+          <li>Help</li>
+          <li>Reddit Coins</li>
+          <li>Reddit Premium</li>
+          <li>Reddit Gifts</li>
+        </ul>
+        <ul class="col-1-2">
+          <li>About</li>
+          <li>Careers</li>
+          <li>Press</li>
+          <li>Advertise</li>
+          <li>Blog</li>
+          <li>Terms</li>
+          <li>Content Policy</li>
+        </ul>
+      </section>
+      <span class="copyright">Reddit Inc © 2021 . All rights reserved<span>
+    </footer>
+  </section>
+</main>

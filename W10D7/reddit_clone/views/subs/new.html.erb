@@ -1,20 +1,62 @@
-<h1>New Sub</h1>
+<main class="main-content">
+  <section class="new-form">
+    <h2 class="sign-in-title">New Sub</h2>
 
-<form action="<%= subs_url %>" method="POST">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <form action="<%= subs_url %>" method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label for="sub_title">Title:</label>
-  <input id="sub_title" type="text" name="sub[title]">
+      <section>
+        <label for="sub_title">Title:</label>
+        <input id="sub_title" type="text" name="sub[title]">
+      </section>
 
-  <label for="sub_description">Description</label>
-  <input id="sub_description" type="text" name="sub[description]">
+      <section>
+        <label for="sub_description">Description</label>
+        <input id="sub_description" type="text" name="sub[description]">
+      </section>
 
-  <label for="sub_moderator">Moderator</label>
-  <select name="sub[author_id]" id="sub_moderator">
-  <% @users.each do |user| %>
-    <option value="<%= user.id %>"><%= user.username %></option>
-  <% end %>
-  </select>
+      <section>
+        <label for="sub_moderator">Moderator</label>
+        <select name="sub[author_id]" id="sub_moderator">
+        <% @users.each do |user| %>
+          <option value="<%= user.id %>"><%= user.username %></option>
+        <% end %>
+        </select>
+      </section>
 
-  <input type="submit" value="Create Sub">
-</form>
+      <section class="sign-in-button">
+        <input type="submit" value="Create Sub">
+      </section>
+    </form>
+  </section>
+
+  <section>
+    <aside class="col-1-3 first-box">
+        <ul class="about">
+          <li><h3>About Community</h3></li>
+          <li><%= @sub.description %></li>
+          <li>Created At: <%= @sub.created_at %></li>
+        </ul>
+    </aside>
+    <footer>
+      <section class="footer-lists">
+        <ul class="col-1-2">
+          <li>Help</li>
+          <li>Reddit Coins</li>
+          <li>Reddit Premium</li>
+          <li>Reddit Gifts</li>
+        </ul>
+        <ul class="col-1-2">
+          <li>About</li>
+          <li>Careers</li>
+          <li>Press</li>
+          <li>Advertise</li>
+          <li>Blog</li>
+          <li>Terms</li>
+          <li>Content Policy</li>
+        </ul>
+      </section>
+      <span class="copyright">Reddit Inc © 2021 . All rights reserved<span>
+    </footer>
+  </section>
+</main>

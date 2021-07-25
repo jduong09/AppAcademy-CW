@@ -1,27 +1,70 @@
-<h1><%= @sub.title %></h1>
-
-<section>
-  <h2>Description</h2>
-  <p><%= @sub.description %></p>
-  <form action="<%= new_post_url %>" method="GET">
-    <input type="hidden" name="_method" value="<%= form_authenticity_token %>">
-
-    <input type="submit" value="Create New Post">
-  </form>
-
-  <span>Created by <%= @moderator.username %></span>
-  
-  <% if current_user == @moderator %>
-    <form action="<%= edit_sub_url %>" method="GET">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      
-      <input type="submit" value="Edit Sub">
-    </form>
-  <% end %>
-
+<%= image_tag("epic_seven_header.jpeg", class:"sub-cover-image") %>
+<section class="sub-header">
   <ul>
-  <% @sub.posts.each do |post| %>
-    <li><%= link_to "#{post.title}", post %></li>
-  <% end %>
+    <li><h2 class="sub-title"><%= @sub.title %></h2></li>
+    <li>r/<%= @sub.title %></li>
   </ul>
 </section>
+<main class="main-content">
+  <section>
+    <form class="create" action="<%= new_post_url %>" method="GET">
+      <input type="submit" value="Create New Post">
+    </form>
+
+    <ul class="posts-list">
+    <% @sub.posts.each do |post| %>
+      <li>
+        <ul class="post">
+          <li>Posted By: <%= post.author.username %></li>
+          <li class="post-title"><%= link_to "#{post.title}", post %></li>
+        </ul>
+      </li>
+    <% end %>
+    </ul>
+  </section>
+  <section>
+    <aside class="col-1-3 first-box">
+      <ul class="about">
+        <li><h3>About Community</h3></li>
+        <li><%= @sub.description %></li>
+        <li>Created At: <%= @sub.created_at %></li>
+      </ul>
+
+      <ul class="aside-buttons">
+        <li>
+          <form class="create aside-button" action="<%= new_post_url %>" method="GET">
+            <input type="submit" value="Create New Post">
+          </form>
+        </li>
+
+        <% if current_user == @moderator %>
+        <li>
+          <form class="create aside-button"action="<%= edit_sub_url %>" method="GET">
+            <input type="submit" value="Edit Sub">
+          </form>
+        </li>
+        <% end %>
+      <ul>
+    </aside>
+    <footer>
+      <section class="footer-lists">
+        <ul class="col-1-2">
+          <li>Help</li>
+          <li>Reddit Coins</li>
+          <li>Reddit Premium</li>
+          <li>Reddit Gifts</li>
+        </ul>
+        <ul class="col-1-2">
+          <li>About</li>
+          <li>Careers</li>
+          <li>Press</li>
+          <li>Advertise</li>
+          <li>Blog</li>
+          <li>Terms</li>
+          <li>Content Policy</li>
+        </ul>
+      </section>
+      <span class="copyright">Reddit Inc © 2021 . All rights reserved<span>
+    </footer>
+  </section>
+</main>

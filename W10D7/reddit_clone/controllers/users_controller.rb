@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
+  layout "auth", only: [:new]
+
   def new
     @user = User.new
 
@@ -9,11 +12,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to
+      redirect_to user_url(@user)
     else
       @user.errors.full_messages
     end
-
   end
 
   def destroy
@@ -27,6 +29,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @subs = Sub.where(author_id: @user.id)
 
     if @user
       render :show

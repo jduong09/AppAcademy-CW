@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
+  layout "auth", only: [:new]
+  
   #New template is place for user to sign in
   def new
     render :new

@@ -6,8 +6,24 @@ class User < ApplicationRecord
   has_many(
     :subs,
     class_name: 'Sub',
-    foreign_key: :creator_id,
+    foreign_key: :author_id,
     primary_key: :id
+  )
+
+  has_many(
+    :comments,
+    class_name: "Comment",
+    foreign_key: :author_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
+
+  has_many(
+    :posts,
+    class_name: "Post",
+    foreign_key: :author_id,
+    primary_key: :id,
+    dependent: :destroy
   )
 
   attr_reader :password

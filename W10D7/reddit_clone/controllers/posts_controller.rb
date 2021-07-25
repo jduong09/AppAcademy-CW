@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: [:show]
+  layout "sub"
+
   def new
     @post = Post.new
 
@@ -43,6 +45,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by(id: params[:id])
     @author = User.find_by(id: @post.author_id)
+    @sub = Sub.find_by(id: @post.sub_ids)
 
     if @post
       render :show

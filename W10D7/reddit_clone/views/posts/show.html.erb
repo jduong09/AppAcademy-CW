@@ -1,38 +1,69 @@
-<h1><%= @post.title %></h1>
-<h2>Created By: <%= @author.username %></h2>
+<main class="main-content">
+  <section>
+    <form class="create" action="<%= new_post_comment_url(@post) %>" method="GET">
+      <input type="submit" value="Create Comment">
+    </form>
 
-<section>
-  <span>Context: <%= @post.context %></span>
-  <span><%= @post.url %>
-  <span>Comments</span>
+    <section class="content">
+      <h2 class="sub-title"><%= @post.title %></h2>
+      <h3>Created By: <%= @author.username %></h3>
 
-  <ul>
-  <% comments_by_parent = @post.comments_by_parent_id %>
-  <% comments_by_parent[nil].each do |top_level_parent| %>
-    <li>
-      <%= render partial: "comments/comment", locals: { parent_comments: comments_by_parent, comment: top_level_parent } %>
-    </li>
-  <% end %>
-  </ul>
+      <span>Context: <%= @post.context %></span>
+      <span><%= @post.url %>
+      <span>Comments</span>
 
-  <form action="<%= new_post_comment_url(@post) %>" method="GET">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <ul>
+      <% comments_by_parent = @post.comments_by_parent_id %>
+      <% comments_by_parent[nil].each do |top_level_parent| %>
+        <li>
+          <%= render partial: "comments/comment", locals: { parent_comments: comments_by_parent, comment: top_level_parent } %>
+        </li>
+      <% end %>
+      </ul>
+    </section>
+  </section>
+  <section>
+    <aside class="class-1-3 first-box">
+      <ul class="about">
+        <li><h3><%= @sub.title %></h3></li>
+        <li><%= @sub.description %></li>
+        <li>Created At: <%= @sub.created_at %></li>
+      </ul>
 
-    <input type="submit" value="Create Comment">
-  </form>
-</section>
+      <% if current_user == @author %>
+      <form class="create" action="<%= edit_post_url %>" method="GET">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-<% if current_user == @author %>
-  <form action="<%= edit_post_url %>" method="GET">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="submit" value="Edit Post">
+      </form>
 
-    <input type="submit" value="Edit Post">
-  </form>
+      <form class="create" action="<%= post_url %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <form action="<%= post_url %>" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-    <input type="submit" value="Delete Post">
-  </form>
-<% end %>
+        <input type="submit" value="Delete Post">
+      </form>
+      <% end %>
+    </aside>
+    <footer>
+      <section class="footer-lists">
+        <ul class="col-1-2">
+          <li>Help</li>
+          <li>Reddit Coins</li>
+          <li>Reddit Premium</li>
+          <li>Reddit Gifts</li>
+        </ul>
+        <ul class="col-1-2">
+          <li>About</li>
+          <li>Careers</li>
+          <li>Press</li>
+          <li>Advertise</li>
+          <li>Blog</li>
+          <li>Terms</li>
+          <li>Content Policy</li>
+        </ul>
+      </section>
+      <span class="copyright">Reddit Inc © 2021 . All rights reserved<span>
+    </footer>
+  </section>
+</main>
