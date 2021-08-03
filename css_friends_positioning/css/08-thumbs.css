@@ -1,0 +1,29 @@
+/* PHASE 2: Thumbs */
+
+.profile-friends {
+  margin-top: 20px;
+}
+
+.friends {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friends > li {
+  width: 60px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.friends img {
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.friends > li:nth-child(2) {
+  margin: 0px 10px 0px 10px;
+}
+
+.friends > li:nth-child(3n + 2) {
+  margin: 0px 10px 0px 10px;
+}
