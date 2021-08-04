@@ -1,0 +1,49 @@
+/* PHASE 4: Posts */
+
+.user-posts {
+  border-top: 1px solid lightgray;
+  margin-top: 10px;
+}
+
+.user-posts > ul {
+  margin: 20px 0px;
+}
+
+.post {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  margin: 10px 0px 10px 0px;
+}
+
+.post-content {
+  width: 90%;
+  height: auto;
+  margin-left: 20px; 
+}
+
+.post-body {
+  margin: 10px 0px;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-footer > ul {
+  display: flex;
+}
+
+.left-footer >li {
+  color: lightgray;
+  font-size: 12px;
+  padding: 5px 10px 5px 0px;
+}
+
+.right-footer > li {
+  padding: 5px 0px 5px 10px;
+}
+
+.right-footer > li:hover {
+  cursor: pointer;
+}

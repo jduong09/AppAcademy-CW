@@ -1,0 +1,84 @@
+/* PHASE 3: Forms */
+
+.create-post {
+  display: flex;
+}
+
+.main-form {
+  margin-left: 20px;
+  width: 90%;
+  height: auto;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background: lightgray;
+}
+
+.form-list {
+  padding: 15px;
+}
+
+.form-list > li:first-child {
+  margin-bottom: 5px;
+}
+
+.form-list > li:nth-child(3n) {
+  margin-bottom: 5px;
+}
+
+.form-list > li:nth-child(2) {
+  margin-bottom: 15px;
+}
+
+.post-label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.input {
+  border: 1px solid white;
+  background: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.submit-list {
+  display: flex;
+  padding: 0px 15px 10px 15px;
+}
+
+.submit-list > li {
+  margin-right: 10px;
+}
+
+.submit {
+  border: 2px solid green;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0px 3px darkgreen;
+  padding: 5px;
+}
+
+.submit:focus {
+  background-color: darkgreen;
+  border-color: darkgreen;
+}
+
+.submit-list > li:nth-child(2) {
+  padding: 5px 0px;
+}
+
+.submit-list > li:nth-child(3) {
+  padding: 5px 0px;
+}
+
+.submit-list > li:last-of-type {
+  font-weight: bold;
+}
+
+.submit-list > li:last-of-type:hover {
+  color: red;
+  cursor: pointer;
+}
+
