@@ -34,9 +34,14 @@
 
 .nav-list > li {
   border-bottom: 1px solid lightgray;
-  padding: 5px;
 }
 
 .nav-list > li:hover {
   background-color: lightgray;
+}
+
+.nav-list a {
+  display: block;
+  padding: 5px;
+  font-weight: 700;
 }
