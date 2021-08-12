@@ -1,5 +1,8 @@
 const MovingObject = require("./moving_object");
 const Util = require("./util");
+const Ship = require("./ship");
+const Bullet = require("./bullet");
+
 
 const DEFAULTS = {
   LENGTH: 4,
@@ -21,9 +24,12 @@ function Asteroid(options) {
 Util.inherits(Asteroid, MovingObject);
 
 Asteroid.prototype.collideWith = function collideWith(otherObject) {
-  if (otherObject instanceof Asteroid) {
+  if (otherObject instanceof Ship) {
+    otherObject.relocate();
+    return true;
+  } else if (otherObject instanceof Bullet) {
     this.remove();
-    otherObject.remove(); 
+    otherObject.remove();
     return true;
   }
   return false;

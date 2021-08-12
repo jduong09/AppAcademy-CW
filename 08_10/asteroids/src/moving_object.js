@@ -11,7 +11,7 @@ function MovingObject(options) {
 MovingObject.prototype.draw = function draw(ctx) {
   ctx.beginPath();
   ctx.strokeStyle = this.color;
-  ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI);
+  ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);
   ctx.stroke();
   ctx.fillStyle = this.color;
   ctx.fill();
@@ -21,13 +21,19 @@ MovingObject.prototype.collideWith = function collideWith(otherObject) {
   // default do nothing
 };
 
+MovingObject.prototype.isWrappable = true;
+
 MovingObject.prototype.move = function move() {
   for (let i = 0; i < this.pos.length; i++) {
     this.pos[i] += this.vel[i];
     
     if (this.game.isOutOfBounds(this.pos)) {
-      this.pos = this.game.wrap(this.pos);
-    } 
+      if (this.isWrappable) {
+        this.pos = this.game.wrap(this.pos);
+      } else {
+        this.remove();
+      }
+    }
   }
 };
 

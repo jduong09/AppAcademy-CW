@@ -1,4 +1,10 @@
 const Util = {
+   // Normalize the length of the vector to 1, maintaining direction.
+   dir(vec) {
+    const norm = Util.norm(vec);
+    return Util.scale(vec, 1 / norm);
+  },
+  
   inherits(child, parent) {
     function Surrogate() {};
 
@@ -11,6 +17,11 @@ const Util = {
   randomVec(length) {
     const deg = 2 * Math.PI * Math.random();
     return Util.scale([Math.sin(deg), Math.cos(deg)], length);
+  },
+
+  // Find the length of the vector.
+  norm(vec) {
+    return Util.dist([0, 0], vec);
   },
 
   // Scale the length of a vector by the given amount.
