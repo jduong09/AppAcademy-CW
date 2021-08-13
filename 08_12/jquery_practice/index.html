@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <style>
+      a.test {
+          font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+    <a href="http://jquery.com/">jQuery</a>
+    <script src="jquery.js"></script>
+    <script>
+ 
+    // Your code goes here.
+      $( document ).ready(function() {
+        // Add class to a selector "a"
+        $( "a" ).addClass( "test" );
+        // Remove class to selector "a"
+        $( "a" ).removeClass( "test" );
+        $( "a" ).click(function( event ) {
+          event.preventDefault();
+
+          $( this ).hide( "slow" );
+        });
+      });
+    // If a callback has no arugments, you can pass it in like this: 
+      // $.get( "myhtmlpage.html", myCallBack );
+
+    // Call back with Arguments
+      // $.get( "myhtmlpage.html", myCallBack( param1, param2 ) ); (This will fail)
+        // Code executes the callback immediately and passes return value as the second parameter.
+      
+      // $.get( "myhtmlpage.html", () => { myCallback( param1, param2, ) } ); (This works)
+        // Code executes the get, and then at the end runs the anonymous function, which will invoke the callback
+
+    </script>
+</body>
+</html>
