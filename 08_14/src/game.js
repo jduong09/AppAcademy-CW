@@ -5,7 +5,7 @@
 */
 class Hanoi {
   constructor() {
-    this.towers = [[1, 2, 3, 4], [], []];
+    this.towers = [[1, 2, 3], [], []];
   }
 
   validMove(startIdx, endIdx) {
@@ -22,6 +22,10 @@ class Hanoi {
         return true;
       }
     }
+  }
+
+  diskSize(pos) {
+    return this.towers[pos[0]][pos[1]];
   }
 
   promptMove(reader, callback) {
@@ -53,7 +57,7 @@ class Hanoi {
   }
 
   isWon() {
-    if (this.towers[2].length === 4) {
+    if (this.towers[2].length === 3) {
       return true;
     } else {
       return false;
