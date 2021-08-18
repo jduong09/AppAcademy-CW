@@ -1,0 +1,21 @@
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-nav > ul {
+  display: flex;
+  padding: 10px;
+}
+
+.header-nav li {
+  margin-left: 4px;
+}
+
+.header-nav a {
+  border: 1px solid plum;
+  color: white;
+  background-color: plum;
+  border-radius: 5px;
+  padding: 5px;
+}
