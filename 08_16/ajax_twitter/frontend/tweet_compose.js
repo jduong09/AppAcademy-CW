@@ -64,12 +64,10 @@ class TweetCompose {
   };
 
   handleSuccess(tweet) {
+    // ul with id "feed"
     const $tweetsUl = $(this.$el.data('tweets-ul'));
 
-    const $li = $('<li></li>');
-    $li.append(JSON.stringify(tweet));
-
-    $tweetsUl.append($li);
+    $tweetsUl.trigger("insert-tweet", tweet);
     this.clearInputs();
   };
 

@@ -22,6 +22,24 @@ const APIUtil = {
       dataType: "json",
       data: { query }
     });
+  },
+
+  createTweet: json_form => {
+    return $.ajax({
+      method: "POST",
+      url: "/tweets",
+      dataType: "json",
+      data: json_form
+    });
+  },
+
+  fetchTweets: data => {
+    return $.ajax({
+      method: "GET",
+      url: "/feed",
+      dataType: "json",
+      data: data
+    });
   }
 
 };
