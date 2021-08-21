@@ -1,0 +1,59 @@
+.feed-header {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid plum;
+}
+
+.feed-header > li {
+  padding: 5px;
+}
+
+.new-tweet {
+  width: 70%;
+  margin: 10px auto;
+}
+
+.create-content {
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 6px;
+}
+
+.tweet-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tweet-actions button, .tweet-actions input {
+  display: block;
+  border: 1px solid plum;
+  border-radius: 10px;
+  background-color: plum;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.infinite-tweets {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.infinite-tweets > ul {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.infinite-tweets > button {
+  display: block;
+  width: 50%;
+  margin: 10px auto 0px auto;
+  border: 1px solid plum;
+  border-radius: 5px;
+  background-color: plum;
+  color: white;
+}
