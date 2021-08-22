@@ -123,4 +123,27 @@ DomNodeCollection.prototype.remove = function remove() {
 
 //Phase 2: Event Handling
 
+DomNodeCollection.prototype.on = function on(eventType, callbackFn) {
+  this.htmlElements.forEach(htmlElement => {
+    htmlElement.addEventListener(eventType, callbackFn);
+    const eventKey = `jqliteEvents-${eventType}`;
+    if (typeof htmlElement[eventKey] === "undefined") {
+      htmlElement[eventKey] = [];
+    }
+    htmlElement.eventKey.push(callbackFn);
+  });
+};
+
+DomNodeCollection.prototype.off = function off(eventType) {
+  this.htmlElements.forEach(htmlElement => {
+    const eventKey = `jqliteEvents-${eventType}`;
+    if (htmlElement[eventKey]) {
+      htmlElement[eventKey].forEach((callbackFn) => {
+        htmlElement.removeEventListener(eventType, callbackFn);
+      });
+    }
+    htmlElement[eventKey] = [];
+  });
+};
+
 module.exports = DomNodeCollection;
