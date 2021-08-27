@@ -1,0 +1,7 @@
+.weather {
+  border: 1px solid black;
+  background-color: lightseagreen;
+  width: 200px; 
+  height: auto;
+  padding: 10px;
+}

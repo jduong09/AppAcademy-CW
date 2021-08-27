@@ -1,0 +1,13 @@
+.widget-auto {
+  border: 1px solid black;
+  background-color: lightgreen;
+  color: white;
+  width: 200px;
+  height: auto;
+}
+
+.widget-auto > input {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+}

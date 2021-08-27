@@ -1,0 +1,24 @@
+.widget-clock {
+  border: 1px solid black;
+  background-color: salmon;
+  color: white;
+  width: 200px;
+  height: auto;
+  margin-top: 10px;
+}
+
+.group::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.clock-label {
+  float: left;
+  padding: 10px;
+}
+
+.clock-values {
+  float:right;
+  padding: 10px;
+}
