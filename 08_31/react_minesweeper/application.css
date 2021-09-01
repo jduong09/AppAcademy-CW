@@ -1,0 +1,40 @@
+#board {
+  border: 1px solid black;
+  width: 180px;
+  height: auto;
+}
+
+.row {
+  display: flex;
+}
+
+.tile {
+  border: 1px solid lightgrey;
+  background-color: lightgrey;
+  border-style: outset;
+  width: 20px;
+  height: 20px;
+}
+
+.bombed, .explored, .flagged {
+  border-style: inset;
+}
+
+.modal-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  position: absolute;
+  border: 1px solid white;
+  background: white;
+  z-index: 2;
+  top: 100px;
+  left: 100px;
+}
