@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<header>
+  <title>Redux Practice</title>
+  <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+</header>
+<body>
+  <div id="root"></div>
+  <button id="increment">+</button>
+  <button id="decrement">-</button>
+  <script>
+    function counterReducer(state = 0, action) {
+  
+      switch(action.type) {
+        case "INCREMENT_COUNTER":
+          return state + 1;
+        case "DECREMENT_COUNTER":
+          return state - 1;
+        default: 
+          return state;
+      };
+    };
+
+    function incrementCounter() {
+      return {
+        type: "INCREMENT_COUNTER"
+      };
+    };
+
+    function decrementCounter() {
+      return {
+        type: "DECREMENT_COUNTER"
+      };
+    };
+
+    const store = Redux.createStore(counterReducer);
+    const valueEl = document.getElementById("root");
+
+    function render() {
+      valueEl.innerHTML = store.getState().toString();
+    }
+
+    render();
+    store.subscribe(render);
+
+    document.getElementById("increment")
+      .addEventListener("click", () => {
+        store.dispatch(incrementCounter());
+      });
+    
+    document.getElementById("decrement")
+      .addEventListener("click", () => {
+        store.dispatch(decrementCounter());
+      });
+
+  </script>
+</body>
+</html>
