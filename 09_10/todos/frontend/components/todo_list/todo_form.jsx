@@ -24,13 +24,16 @@ class TodoForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    
-    this.props.receiveTodo({
-      id: uniqueId(),
-      title: this.state.title,
-      body: this.state.body,
-      done: false
-    });
+    if (this.state.title) {
+      this.props.receiveTodo({
+        id: uniqueId(),
+        title: this.state.title,
+        body: this.state.body,
+        done: false
+      });
+    } else {
+      alert("You didn't add a title!");
+    }
   };
 
   render() {
