@@ -1,5 +1,7 @@
 import { RECEIVE_TODOS, RECEIVE_TODO, REMOVE_TODO } from '../actions/todo_actions';
 
+//dummy state
+/*
 const initialState = {
   1: {
     id: 1,
@@ -14,8 +16,9 @@ const initialState = {
     done: true
   }
 };
+*/
 
-const todosReducer = (state = initialState, action) => {
+const todosReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = {};
 
