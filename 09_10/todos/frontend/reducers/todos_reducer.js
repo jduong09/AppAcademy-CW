@@ -18,6 +18,7 @@ const initialState = {
 };
 */
 
+
 const todosReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = {};

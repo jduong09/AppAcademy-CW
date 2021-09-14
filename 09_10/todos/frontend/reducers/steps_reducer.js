@@ -1,5 +1,6 @@
 import { RECEIVE_STEPS, RECEIVE_STEP, REMOVE_STEP } from '../actions/step_actions';
 
+/*
 const initialState = {
   1: {
     id: 1,
@@ -14,8 +15,9 @@ const initialState = {
     done: false
   }
 };
+*/
 
-const stepsReducer = (state = initialState, action) => {
+const stepsReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = {};
 

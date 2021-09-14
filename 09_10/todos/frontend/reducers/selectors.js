@@ -25,7 +25,19 @@ export const selectSteps = ({ steps }, id) => {
   return steps[id] || nullStep;
 };
 
+export const stepsByTodoId = ({ steps }, tID) => {
+  let result = [];
+  for (const step_id in steps) {
+    if (steps[step_id].todo_id === tID) {
+      result.push(steps[step_id]);
+    };
+  };
+
+  return result;
+};
+
 window.getAllTodos = getAllTodos;
 window.selectTodos = selectTodos;
 window.getAllSteps = getAllSteps;
 window.selectSteps = selectSteps;
+window.stepsByTodoId = stepsByTodoId;
