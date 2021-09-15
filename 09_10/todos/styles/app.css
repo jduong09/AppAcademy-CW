@@ -1,0 +1,57 @@
+body {
+  background-color: rgb(95, 209, 209);
+  margin: 0;
+}
+
+.app {
+  width: 80%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 32px;
+  text-align: center;
+}
+
+form, .list-item {
+  width: 50%;
+  height: auto;
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 5px auto;
+}
+
+.create-todo {
+  display: flex;
+  flex-direction: column;
+}
+
+input, button {
+  border: 1px solid black;
+  background-color: white;
+  padding: 2px;
+  margin: 5px;
+  border-radius: 2px;
+}
+
+.btn {
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: rgb(95, 209, 209);
+  border-color: rgb(95, 209, 209);
+}
+
+.step-form {
+  width: 90%;
+  border: 1px solid rgb(95, 209, 209);
+  background-color: rgb(95, 209, 209);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
