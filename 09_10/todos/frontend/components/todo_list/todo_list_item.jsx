@@ -35,11 +35,11 @@ class TodoListItem extends React.Component {
       <li className="list-item">
         <h3 onClick={this.handleDetailClick}>{todo.title}</h3>
         {todoDetailView}
-        <button onClick={() => receiveTodo({
+        <button className="btn" onClick={() => receiveTodo({
           ...todo,
           done: todo.done ? false : true
         })}>{todo.done ? 'Complete' : 'Incomplete'}</button>
-        <button onClick={() => removeTodo(todo)}>Delete</button>
+        <button className="btn" onClick={() => removeTodo(todo)}>Delete</button>
       </li>
     );
   };

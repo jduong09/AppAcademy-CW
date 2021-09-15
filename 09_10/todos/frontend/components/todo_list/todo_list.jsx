@@ -14,11 +14,11 @@ const TodoList = ({ todos, receiveTodo, removeTodo }) => {
   
   return (
     <div>
-      <h3>Todo List goes here!</h3>
-      <ul className="list-items">
+      <h1>Todo List goes here!</h1>
+      <TodoForm receiveTodo={receiveTodo} />
+      <ul className="list">
         {listItems}
       </ul>
-      <TodoForm receiveTodo={receiveTodo} />
     </div>
   );
 };
