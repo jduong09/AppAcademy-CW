@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 //action controller
-import { receiveStep } from '../../actions/step_actions';
+import { fetchSteps, createStep } from '../../actions/step_actions';
 //presentational component to connect
 import StepList from './step_list';
-import { stepsByTodoId, getAllSteps } from '../../reducers/selectors';
+import { stepsByTodoId } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  receiveStep: (step) => dispatch(receiveStep(step))
+  requestSteps: (todo) => dispatch(fetchSteps(todo)),
+  createStep: (step) => dispatch(createStep(step))
 });
 
 const StepListContainer = connect(mapStateToProps, mapDispatchToProps)(StepList);

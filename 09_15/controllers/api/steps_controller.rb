@@ -6,10 +6,11 @@ class Api::StepsController < ApplicationController
       render json: @step
     else
       render json: @step.errors.full_messages, status: 422
+    end
   end
 
   def index
-    @steps = Step.all
+    @steps = Step.where("todo_id = ?", params[:todo_id])
 
     render json: @steps
   end

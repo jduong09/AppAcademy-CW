@@ -25,15 +25,16 @@ class StepForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.title) {
-      this.props.receiveStep({
+      this.props.createStep({
         id: uniqueId(),
         title: this.state.title,
         body: this.state.body,
         todo_id: this.props.todo_id,
         done: false 
-      });
+      })
+        .then(() => this.setState({ title: "", body: "" }));
     } else {
-      alert("You didn't add a title to your step!");
+        alert("You need to provide a title");
     };
   };
 

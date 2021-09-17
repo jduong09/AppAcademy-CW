@@ -4,8 +4,11 @@ import configureStore from './store/store.js';
 import Root from './components/root';
 
 import { fetchTodos } from './actions/todo_actions';
+import { fetchSteps, createStep } from './actions/step_actions';
 
 window.fetchTodos = fetchTodos;
+window.fetchSteps = fetchSteps;
+window.createStep = createStep;
 
 document.addEventListener("DOMContentLoaded", () => {
   const preloadedState = {};
