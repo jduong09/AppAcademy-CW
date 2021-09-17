@@ -1,5 +1,6 @@
 import React from 'react';
 import uniqueId from '../../util/id';
+import ErrorList from './error_list';
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -25,11 +26,15 @@ class TodoForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.title) {
-      this.props.receiveTodo({
-        id: uniqueId(),
-        title: this.state.title,
-        body: this.state.body,
-        done: false
+      this.props.createTodo({
+        todo: {
+          id: uniqueId(),
+          title: this.state.title,
+          body: this.state.body,
+          done: false
+        }
+      }).then(() => {
+        this.setState({ title: '', body: ''});
       });
     } else {
       alert("You didn't add a title!");
@@ -39,6 +44,7 @@ class TodoForm extends React.Component {
   render() {
     return (
       <form className="create-todo" onSubmit={this.handleSubmit}>
+        <ErrorList errors={this.props.errors} />
         <label>Title:</label>
         <input type="text" id="todo-form-title" value={this.state.title} onChange={this.handleChange} />
 

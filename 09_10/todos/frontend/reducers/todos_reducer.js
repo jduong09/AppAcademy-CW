@@ -24,14 +24,17 @@ const todosReducer = (state = {}, action) => {
   let newState = {};
 
   switch(action.type) {
+    // retreive all todos
     case RECEIVE_TODOS:
       action.todos.forEach( todo => {
         newState[todo.id] = todo;
       });
       return newState;
+    //create and update a todo happens with this action creator
     case RECEIVE_TODO:
       const newTodo = {[action.todo.id]: action.todo};
       return Object.assign({}, state, newTodo);
+    // delete todo
     case REMOVE_TODO:
       newState = Object.assign({}, state);
       delete newState[action.todo.id];

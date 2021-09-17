@@ -23,7 +23,7 @@ class TodoListItem extends React.Component {
   };
 
   render() {
-    const { todo, receiveTodo, removeTodo } = this.props;
+    const { todo, removeTodo, updateTodo } = this.props;
 
     let todoDetailView;
 
@@ -35,7 +35,7 @@ class TodoListItem extends React.Component {
       <li className="list-item">
         <h3 onClick={this.handleDetailClick}>{todo.title}</h3>
         {todoDetailView}
-        <button className="btn" onClick={() => receiveTodo({
+        <button className="btn" onClick={() => updateTodo({
           ...todo,
           done: todo.done ? false : true
         })}>{todo.done ? 'Complete' : 'Incomplete'}</button>
