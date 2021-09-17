@@ -9,3 +9,7 @@
 Todo.create({ "title" => "Wash my car", "body" => "Wash the Honda by Sunday", "done" => false })
 Todo.create({ "title" => "Food Prep", "body" => "Make lunch/dinner for the week", "done" => false })
 Todo.create({ "title" => "Practice CSS", "body" => "Make websites and practice styling them", "done" => false })
+
+Step.create({ "title" => "Buy Soap", "body" => "Go to the store", "done" => false, "todo_id" => 1 })
+Step.create({ "title" => "Buy meat", "body" => "Go to the store", "done" => false, "todo_id" => 2 })
+Step.create({ "title" => "Hackerrank", "body" => "Go to hackeerank and practice algorithms", "todo_id" => 3 })
