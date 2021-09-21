@@ -4,6 +4,7 @@ class CreateTodo < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.string :body, null: false
       t.boolean :done, null: false
+      t.integer :user_id, null: false
 
       t.timestamps
     end

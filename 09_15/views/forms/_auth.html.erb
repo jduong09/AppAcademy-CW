@@ -1,0 +1,22 @@
+<% if action == :session %>
+  <% action_url = session_url %>
+  <% sign_in_value = "Sign In" %>
+<% else %>
+  <% action_url = users_url %>
+  <% sign_in_value = "Sign Up" %>
+<% end %>
+
+<form class="auth_form" action="<%= action_url %>" method="POST">
+  <input
+    type="hidden"
+    name ="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="user[username]">
+
+  <label for="password">Password:</label>
+  <input type="text" id="password" name="user[password]">
+
+  <input type="submit" value="<%= sign_in_value %>">
+</form>
