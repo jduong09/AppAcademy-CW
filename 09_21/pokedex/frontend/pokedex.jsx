@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { fetchAllPokemon } from './util/api_util';
-import { receiveAllPokemon } from './actions/pokemon_actions';
-import { requestAllPokemon } from './actions/pokemon_actions';
-
+//store
 import configureStore from './store/store';
+//root component that will be displaying all of our pokemon components
+import Root from './components/root';
 
 // after figuring out entry of frontend elements
 // nextStep/FIRST STEP: think about shape of application state
@@ -34,15 +32,8 @@ import configureStore from './store/store';
 }
 */
 
-window.fetchAllPokemon = fetchAllPokemon;
-window.receiveAllPokemon = receiveAllPokemon;
-window.requestAllPokemon = requestAllPokemon;
-
 document.addEventListener("DOMContentLoaded", () => {
   const store = configureStore();
   const root = document.getElementById("root");
-  ReactDOM.render(<h1>Hello Pokedex here</h1>, root);
-
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
+  ReactDOM.render(<Root store={store} />, root);
 });
