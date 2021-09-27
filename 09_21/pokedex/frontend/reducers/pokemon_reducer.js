@@ -1,7 +1,7 @@
 // reducers are only concerned with describing 
 // how the state changes as a result of the action.
 // they return the new state.
-import { RECEIVE_ALL_POKEMON, RECEIVE_POKEMON } from '../actions/pokemon_actions';
+import { RECEIVE_ALL_POKEMON, RECEIVE_POKEMON, RECEIVE_NEW_POKEMON } from '../actions/pokemon_actions';
 
 const pokemonReducer = (previousState = {}, action) => {
   // freeze the previous state!

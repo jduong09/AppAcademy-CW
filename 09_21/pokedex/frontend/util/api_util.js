@@ -15,3 +15,11 @@ export const fetchPokemon = (pokemon_id) => (
     url: `/api/pokemon/${pokemon_id}`
   })
 );
+
+export const createPokemon = (pokemon) => (
+  $.ajax({
+    method: 'POST',
+    url: '/api/pokemon',
+    data: pokemon
+  })
+);

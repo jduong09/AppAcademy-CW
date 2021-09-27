@@ -5,8 +5,8 @@ import configureStore from './store/store';
 //root component that will be displaying all of our pokemon components
 import Root from './components/root';
 
-import { fetchAllPokemon, fetchPokemon } from './util/api_util';
-import { selectAllPokemon } from './reducers/selectors';
+import { fetchAllPokemon, fetchPokemon, createPokemon } from './util/api_util';
+import { selectAllPokemon, selectPokemonMovesNames, selectPokemonItems } from './reducers/selectors';
 import { requestAllPokemon, requestSinglePokemon } from './actions/pokemon_actions';
 
 // after figuring out entry of frontend elements
@@ -41,6 +41,9 @@ window.fetchPokemon = fetchPokemon;
 window.selectAllPokemon = selectAllPokemon;
 window.requestAllPokemon = requestAllPokemon;
 window.requestSinglePokemon = requestSinglePokemon;
+window.selectPokemonMovesNames = selectPokemonMovesNames;
+window.selectPokemonItems = selectPokemonItems;
+window.createPokemon = createPokemon;
 
 document.addEventListener("DOMContentLoaded", () => {
   const store = configureStore();
