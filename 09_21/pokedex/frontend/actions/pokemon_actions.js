@@ -64,3 +64,13 @@ export const createSinglePokemon = pokemon => dispatch => (
     })
     .fail(errors => dispatch(receivePokemonErrors(errors.responseJSON)))
 );
+
+export const updatePokemon = pokemon => {
+  return dispatch => {
+    return APIUtil.updatePokemon(pokemon)
+      .then(payload => {
+        dispatch(receivePokemon(payload));
+        return payload.pokemon;
+      });
+  };
+};

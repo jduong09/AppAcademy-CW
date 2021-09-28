@@ -5,14 +5,14 @@ class PokemonForm extends React.Component {
     super(props);
 
     this.state = {
-      name: "",
-      attack: "",
-      defense: "",
-      poke_type: "water",
-      image_url: "",
+      name: this.props.pokemon.name ? this.props.pokemon.name : "",
+      attack: this.props.pokemon.attack ? this.props.pokemon.attack : "",
+      defense: this.props.pokemon.defense ? this.props.pokemon.defense : "",
+      poke_type: this.props.pokemon.pokeType ? this.props.pokemon.pokeType : "",
+      image_url: this.props.pokemon.imageUrl ? this.props.pokemon.imageUrl : "",
       move_names: [],
-      move1: "",
-      move2: ""
+      move1: this.props.moves[0] ? this.props.moves[0] : "",
+      move2: this.props.moves[1] ? this.props.moves[1] : ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,8 +35,8 @@ class PokemonForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.addMoves();
-    
-    this.props.createPokemon({ 
+
+    const form = { 
       pokemon: {
         name: this.state.name,
         attack: this.state.attack,
@@ -45,10 +45,27 @@ class PokemonForm extends React.Component {
         image_url: this.state.image_url,
         move_names: this.state.move_names
       }
-    }).then(newPokemon => this.props.history.push(`/pokemon/${newPokemon.id}`));
+    };
+
+    if (this.props.match.params.id) {
+      form.id = this.props.match.params.id;
+      this.props.updatePokemon(form).then(updatedPokemon => this.props.history.push(`/pokemon/${updatedPokemon.id}`));
+    } else {
+      this.props.createPokemon(form).then(newPokemon => this.props.history.push(`/pokemon/${newPokemon.id}`));
+    }
+  };
+
+  updatePokemon() {
+    if (this.props.match.params.pokemonId) {
+      return <button type="submit">Update Pokemon</button>
+    } else {
+      return <button type="submit">Create Pokemon</button>
+    }
   };
 
   render() {
+    const { pokemon, moves } = this.props;
+
     const pokeTypes = ['fire', 'electric', 'normal', 'ghost', 'psychic', 'water', 'bug', 'dragon', 'grass', 'fighting', 'ice', 'flying', 'poison', 'ground', 'rock', 'steel']
       .map((poke_type, idx) => {
         return <option key={idx} value={poke_type}>{poke_type}</option>
@@ -61,17 +78,24 @@ class PokemonForm extends React.Component {
       );
     });
 
+    let submitButton;
+    if (this.props.match.params.id) {
+      submitButton = <button type="submit">Update Pokemon</button>;
+    } else {
+      submitButton = <button type="submit">Create Pokemon</button>;
+    }
+    
     return (
       <section className="pokemon-detail">
         <ul>{errorsList}</ul>
         <form className="pokemon-form" onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.name} placeholder="Name" onChange={this.handleChange("name")} />
+          <input type="text" value={this.state.name} placeholder={pokemon.name ? pokemon.name : "Name"} onChange={this.handleChange("name")} />
 
-          <input type="text" value={this.state.image_url} placeholder="Image Url" onChange={this.handleChange("image_url")} />
+          <input type="text" value={this.state.image_url} placeholder={pokemon.imageUrl ? pokemon.imageUrl : "Image Url"} onChange={this.handleChange("image_url")} />
           
-          <input type="number" value={this.state.attack} placeholder="Attack" onChange={this.handleChange("attack")} />
+          <input type="number" value={this.state.attack} placeholder={pokemon.attack ? pokemon.attack : "Attack"} onChange={this.handleChange("attack")} />
           
-          <input type="number" value={this.state.defense} placeholder="Defense" onChange={this.handleChange("defense")} />
+          <input type="number" value={this.state.defense} placeholder={pokemon.defense ? pokemon.defense : "Defense"} onChange={this.handleChange("defense")} />
           
           <select value={this.state.poke_type} onChange={this.handleChange("poke_type")}>
             {pokeTypes}
@@ -81,7 +105,7 @@ class PokemonForm extends React.Component {
 
           <input type="text" value={this.state.move2} placeholder="Move 2" onChange={this.handleChange("move2")} />
 
-          <button type="submit">Create Pokemon</button>
+          {submitButton}
         </form>
       </section>
     );

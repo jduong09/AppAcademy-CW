@@ -53,6 +53,9 @@ class PokemonDetail extends React.Component {
         </ul>
         <ul className="toy-list">{itemsList}</ul>
         <Route path="/pokemon/:pokemonId/items/:itemId" component={ItemDetailContainer} />
+        <Link to={`/pokemon/${pokemon.id}/edit`}>
+          <button>Edit Pokemon</button>
+        </Link>
       </section>
     );
   };

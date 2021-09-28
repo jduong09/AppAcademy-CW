@@ -23,3 +23,11 @@ export const createPokemon = (pokemon) => (
     data: pokemon
   })
 );
+
+export const updatePokemon = (pokemon) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/pokemon/${pokemon.id}`,
+    data: pokemon
+  })
+);

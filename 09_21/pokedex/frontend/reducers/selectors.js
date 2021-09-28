@@ -12,3 +12,16 @@ export const selectPokemonItems = (state) => {
   const itemsHash = state.entities.items;
   return Object.values(itemsHash);
 };
+
+export const selectSinglePokemon = (state, id) => {
+  const nullPokemon = {
+    id: null,
+    name: "",
+    poke_type: "",
+    attack: 0,
+    defense: 0,
+    moves: []
+  };
+  
+  return state.entities.pokemon[id] || nullPokemon;
+};
