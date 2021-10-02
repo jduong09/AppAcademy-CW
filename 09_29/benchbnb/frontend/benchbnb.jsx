@@ -3,14 +3,30 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { signup, login, logout } from './actions/session_actions';
+import { getBenches, createBench } from './actions/bench_actions';
 
-window.signup = signup;
-window.login = login;
-window.logout = logout;
+window.getBenches = getBenches;
+window.createBench = createBench;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const store = configureStore();
+  let store;
+  if (window.currentUser) {
+    const { currentUser } = window;
+    const { id } = currentUser;
+    const preloadedState = {
+      entities: {
+        users: {
+          [id]: currentUser
+        }
+      },
+      session: { id }
+    };
+    store = configureStore(preloadedState);
+
+    delete window.currentUser;
+  } else {
+    store = configureStore();
+  };
 
   window.getState = store.getState;
   window.dispatch = store.dispatch;

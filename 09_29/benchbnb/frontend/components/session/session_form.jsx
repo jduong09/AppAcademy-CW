@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -23,7 +24,11 @@ class SessionForm extends React.Component {
   };
 
   render() {
-    return (
+    const otherForm = this.props.formType === 'login' 
+      ? <Link className="btn" to="/signup">Sign Up</Link> 
+      : <Link className="btn" to="/login">Log In</Link>
+    
+      return (
       <div className="session-form">
         <h1>{this.props.formType.toUpperCase()}</h1>
         <form>
@@ -41,6 +46,7 @@ class SessionForm extends React.Component {
 
           <button onClick={this.handleSubmit}>{this.props.formType.toUpperCase()}</button>
         </form>
+        {otherForm}
       </div>
     );
   };
