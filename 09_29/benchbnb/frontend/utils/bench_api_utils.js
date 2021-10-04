@@ -1,8 +1,9 @@
 // ajax request that fetches all the benches in the db
-export const getBenches = () => (
+export const getBenches = (data) => (
   $.ajax({
     method: 'GET',
-    url: '/api/benches'
+    url: '/api/benches',
+    data: { bounds: data }
   })
 );
 

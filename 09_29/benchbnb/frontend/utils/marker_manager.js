@@ -1,5 +1,5 @@
 class MarkerManager {
-  constructor(map) {
+  constructor(map, handleClick) {
     this.map = map;
     this.markers = {};
   };
@@ -10,18 +10,34 @@ class MarkerManager {
   create a new marker from it and add it to the map and this.markers
   */
   updateMarkers(benches) {
-    console.log("time to update");
-    benches.forEach(bench => {
-      if (!this.markers[bench.id]) {
-        createMarkerFromBench(bench);
-      }  
-    });
+    const benchesObj = {};
+    benches.forEach(bench => benchesObj[bench.id] = bench);
+
+    benches
+      .filter(bench => !this.markers[bench.id])
+      .forEach(newBench => this.createMarkerFromBench(newBench));
+
+    Object.keys(this.markers)
+      .filter(benchId => !benchesObj[benchId])
+      .forEach((benchId) => this.removeMarker(this.markers[benchId]))
   };
 
   // use bench object (contains lat/long) to create marker
   // add to this.markers
   createMarkerFromBench(bench) {
+    const position = new google.maps.LatLng(bench.lat, bench.lng);
+    const marker = new google.maps.Marker({
+      position,
+      map: this.map,
+      benchId: bench.id
+    });
+    
+    this.markers[marker.benchId] = marker;
+  }
 
+  removeMarker(marker) {
+    this.markers[marker.benchId].setMap(null);
+    delete this.markers[marker.benchId];
   }
 };
 
