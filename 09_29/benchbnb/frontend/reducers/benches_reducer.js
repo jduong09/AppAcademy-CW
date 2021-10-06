@@ -9,7 +9,7 @@ const benchesReducer = (prevState = {}, action) => {
       action.benches.map(bench => newState[bench.id] = bench);
       return newState;
     case RECEIVE_BENCH:
-      Object.assign({}, prevState, action.bench);
+      return Object.assign({}, prevState, { [action.bench.id]: action.bench });
     default:
       return prevState;
   };

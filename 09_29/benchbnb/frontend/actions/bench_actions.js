@@ -13,8 +13,8 @@ const receiveBench = (bench) => ({
   bench,
 });
 
-export const getBenches = () => dispatch => (
-  BenchApiUtils.getBenches().then(benches => dispatch(receiveBenches(benches)))
+export const getBenches = (filters) => dispatch => (
+  BenchApiUtils.getBenches(filters).then(benches => dispatch(receiveBenches(benches)))
 );
 
 export const createBench = bench => dispatch => (
