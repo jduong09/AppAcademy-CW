@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { getBenches, createBench } from './actions/bench_actions';
+import { getBenches, createBench, updateFilter } from './actions/bench_actions';
 
 window.getBenches = getBenches;
 window.createBench = createBench;
+window.updateFilter = updateFilter;
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;

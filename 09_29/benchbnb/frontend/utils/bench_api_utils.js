@@ -3,7 +3,7 @@ export const getBenches = (data) => (
   $.ajax({
     method: 'GET',
     url: '/api/benches',
-    data: { bounds: data }
+    data
   })
 );
 

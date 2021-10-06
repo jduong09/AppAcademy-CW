@@ -1,14 +1,16 @@
-import { UPDATE_BOUNDS } from '../actions/filter_actions';
+import { UPDATE_FILTER } from '../actions/bench_actions';
 
 const defaultFilters = {
-  bounds: {}
+  bounds: {},
+  minSeating: 1,
+  maxSeating: 10
 };
 
 const filtersReducer = (prevState = defaultFilters, action) => {
   Object.freeze(prevState);
   switch(action.type) {
-    case UPDATE_BOUNDS:
-      return action.bounds;
+    case UPDATE_FILTER:
+      return Object.assign({}, prevState, { [action.filter]: action.value });
     default:
       return prevState;
   };

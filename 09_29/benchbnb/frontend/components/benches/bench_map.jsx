@@ -28,7 +28,7 @@ class BenchMap extends React.Component {
         southWest: { lat: south, lng: west }
       };
 
-      this.props.filter(bounds);
+      this.props.filter('bounds', bounds);
     });
 
     google.maps.event.addListener(this.map, "click", (e) => {
