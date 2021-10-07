@@ -4,10 +4,13 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 import { getBenches, createBench, updateFilter } from './actions/bench_actions';
+import { getReviewsByBenchId, createReview } from './actions/review_actions';
 
 window.getBenches = getBenches;
 window.createBench = createBench;
 window.updateFilter = updateFilter;
+window.getReviewsByBenchId = getReviewsByBenchId;
+window.createReview = createReview;
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;

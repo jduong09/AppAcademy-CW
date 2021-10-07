@@ -7,5 +7,11 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     #login/logout
     resource :session, only: [:create, :destroy]
+
+    resources :benches, only: [:create, :index] do
+      resources :reviews, only: [:index]
+    end
+
+    resources :reviews, only: [:create]
   end
 end

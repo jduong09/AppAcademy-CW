@@ -55,8 +55,10 @@ class BenchMap extends React.Component {
   };
 
   componentDidUpdate() {
-    const { benches } = this.props;
-    this.MarkerManager.updateMarkers(benches);
+    if (this.props.benches) {
+      const { benches } = this.props;
+      this.MarkerManager.updateMarkers(benches);
+    }
   };
 
   handleClick(coords) {
